@@ -1,349 +1,105 @@
-import React from "react";
-
+import { Star, Quote } from "lucide-react";
 import testi1 from "../assets/testi1.png";
 import testi2 from "../assets/testi2.png";
 import testi3 from "../assets/testi3.png";
 
-/* =========================================================
-   STATISTICS
-========================================================= */
-
-const stats = [
-  {
-    value: "1,000+",
-    label: "Customers",
-  },
-  {
-    value: "50+",
-    label: "People",
-  },
-  {
-    value: "5+",
-    label: "Years of experience",
-  },
-];
-
-/* =========================================================
-   TESTIMONIAL DATA
-========================================================= */
-
 const testimonials = [
   {
     quote:
-      "The entire interior design team was truly amazing to work with. They fully captured our vision and need for functionality and gave us our dream home! They also made the process fun and exciting along the way and we trusted them completely.",
-    name: "Sonela",
-    role: "Sports Person",
-    image: testi1,
-  },
-
-  {
-    quote:
-      "Roy Enterprise has a great team, friendly relation, they designed the ideal house for my needs. It is a fantastic project, we are very happy! They were originally recommended to us by a friend and now we recommend them.",
+      "Roy Enterprise built our 3,500 sq ft factory roof shed using Tata Galvalume sheets. Their team completed the steel truss erection in just 4 days with zero leaks during heavy monsoon rains. Outstanding craftsmanship and very honest pricing!",
     name: "Sujit Purkait",
-    role: "Engineer",
+    role: "Industrial Plant Engineer",
+    project: "Factory Roof Shed",
+    rating: 5,
     image: testi2,
   },
-
   {
     quote:
-      "Roy Enterprise is working with glamour, responsibility, and commitment. They will work with your needs and help you going through the transition of renovating your home. Great company to work with, dedicated and professional team.",
-    name: "Anindita",
-    role: "Graphic Designer",
+      "We hired Roy Enterprise for our residential terrace roof shed and UPVC sliding windows. The finish is extremely neat, and they used heavy GI pipes just as promised in the contract. Highly recommend them to anyone in Kolkata!",
+    name: "Sonela Roy",
+    role: "Homeowner & Sports Professional",
+    project: "Terrace Roof Shed & UPVC Glazing",
+    rating: 5,
+    image: testi1,
+  },
+  {
+    quote:
+      "Roy Enterprise works with commitment and professional responsibility. Their false ceiling and toughened glass partition work turned our office into a modern space. Great team, very polite, and extremely dedicated.",
+    name: "Anindita Sen",
+    role: "Senior Graphic Designer & Studio Lead",
+    project: "False Ceiling & Glass Partition",
+    rating: 5,
     image: testi3,
   },
 ];
 
-/* =========================================================
-   TESTIMONIALS COMPONENT
-========================================================= */
-
-const Testimonials = () => {
+export default function Testimonials() {
   return (
-    <section
-      className="
-        relative
-        w-full
-        overflow-hidden
-        bg-[#fafbfc]
-        text-[#172b4d]
-      "
-    >
-      {/* =====================================================
-          MAIN CONTENT
-      ===================================================== */}
+    <section id="testimonials" className="py-20 bg-white relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+          <span className="font-script text-3xl sm:text-4xl text-amber-600 block">
+            Verified Customer Feedback
+          </span>
 
-      <div
-        className="
-          mx-auto
-          w-full
-          max-w-[1200px]
+          <h2 className="font-cinzel text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight uppercase">
+            What Our Clients Say About <span className="text-red-600">Roy Enterprise</span>
+          </h2>
 
-          px-5
-          py-12
+          <p className="font-lora text-slate-600 text-base sm:text-lg leading-relaxed">
+            We put our heart into every weld and joint. Hearing our clients express delight in our work gives us the energy to keep setting higher standards in roofing excellence.
+          </p>
+        </div>
 
-          sm:px-6
-          sm:py-14
-
-          md:px-8
-          md:py-16
-
-          lg:px-10
-          lg:py-[42px]
-        "
-      >
-        {/* ===================================================
-            STATISTICS
-        =================================================== */}
-
-        <div
-          className="
-            grid
-            grid-cols-1
-            gap-8
-            text-center
-
-            sm:grid-cols-3
-            sm:gap-6
-
-            md:gap-10
-          "
-        >
-          {stats.map((stat) => (
+        {/* Testimonials Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {testimonials.map((t, idx) => (
             <div
-              key={stat.label}
-              className="
-                flex
-                flex-col
-                items-center
-                justify-center
-              "
+              key={idx}
+              className="bg-slate-50 p-8 rounded-3xl border border-slate-200/80 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between relative group"
             >
-              <span
-                className="
-                  text-[40px]
-                  font-medium
-                  leading-none
-                  tracking-[-1.5px]
-                  text-[#29476b]
+              <Quote className="w-10 h-10 text-red-200 group-hover:text-red-300 transition-colors absolute top-6 right-6 pointer-events-none" />
 
-                  sm:text-[42px]
+              <div className="space-y-4 relative z-10">
+                {/* Rating Stars */}
+                <div className="flex text-amber-400 gap-1">
+                  {[...Array(t.rating)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                  ))}
+                </div>
 
-                  md:text-[44px]
-                "
-              >
-                {stat.value}
-              </span>
+                <p className="font-lora text-slate-700 text-sm sm:text-base leading-relaxed italic">
+                  "{t.quote}"
+                </p>
+              </div>
 
-              <span
-                className="
-                  mt-2
-                  text-[11px]
-                  font-normal
-                  leading-4
-                  text-[#29476b]
+              {/* Author & Project Badge */}
+              <div className="pt-6 border-t border-slate-200/60 flex items-center gap-4 mt-6">
+                <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-red-600 shrink-0 shadow-md">
+                  <img
+                    src={t.image}
+                    alt={t.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
 
-                  sm:text-[12px]
-                "
-              >
-                {stat.label}
-              </span>
+                <div className="min-w-0">
+                  <h4 className="font-cinzel text-base font-extrabold text-slate-900 truncate uppercase">
+                    {t.name}
+                  </h4>
+                  <p className="text-xs text-slate-500 font-medium truncate">{t.role}</p>
+                  <span className="inline-block mt-1 px-2 py-0.5 rounded bg-red-100 text-red-700 text-[10px] font-extrabold uppercase tracking-wider">
+                    {t.project}
+                  </span>
+                </div>
+              </div>
             </div>
           ))}
         </div>
 
-        {/* ===================================================
-            HEADING
-        =================================================== */}
-
-        <div
-          className="
-            mt-7
-            text-left
-
-            sm:mt-8
-
-            md:mt-6
-          "
-        >
-          <h2
-            className="
-              text-[24px]
-              font-bold
-              leading-[1.2]
-              tracking-[-0.5px]
-              text-[#071d3a]
-
-              sm:text-[26px]
-
-              md:text-[27px]
-            "
-          >
-            What peoples say
-          </h2>
-
-          <p
-            className="
-              mt-3
-              max-w-[1050px]
-              text-[11px]
-              font-normal
-              leading-[1.7]
-              text-[#29476b]
-
-              sm:text-[12px]
-
-              md:text-[12px]
-            "
-          >
-            We do everything to satisfy them, and when their beautiful words of
-            appreciations touches us – we find more courage to improve and to
-            keep what we have.
-          </p>
-        </div>
-
-        {/* ===================================================
-            TESTIMONIAL GRID
-        =================================================== */}
-
-        <div
-          className="
-            mt-7
-            grid
-            grid-cols-1
-            gap-10
-
-            sm:mt-8
-            sm:grid-cols-3
-            sm:gap-6
-
-            md:gap-10
-          "
-        >
-          {testimonials.map((testimonial) => (
-            <article
-              key={testimonial.name}
-              className="
-                flex
-                flex-col
-                items-center
-                text-center
-              "
-            >
-              {/* =================================================
-                  QUOTE
-              ================================================= */}
-
-              <p
-                className="
-                  max-w-[320px]
-                  text-[12px]
-                  font-normal
-                  leading-[1.7]
-                  text-[#29476b]
-
-                  sm:text-[11px]
-
-                  md:text-[12px]
-                "
-              >
-                “{testimonial.quote}”
-              </p>
-
-              {/* =================================================
-                  PERSON
-              ================================================= */}
-
-              <div
-                className="
-                  mt-4
-                  flex
-                  items-center
-                  justify-center
-                  gap-2.5
-                "
-              >
-                {/* Avatar */}
-
-                <div
-                  className="
-                    h-[43px]
-                    w-[43px]
-                    shrink-0
-                    overflow-hidden
-                    rounded-full
-                    border
-                    border-[#1b1b1b]
-                    bg-[#e8e8e8]
-                    shadow-[0_1px_5px_rgba(0,0,0,0.12)]
-                  "
-                >
-                  <img
-                    src={testimonial.image}
-                    alt={`${testimonial.name} profile`}
-                    className="
-                      h-full
-                      w-full
-                      object-cover
-                    "
-                    loading="lazy"
-                  />
-                </div>
-
-                {/* Name + Role */}
-
-                <div className="text-left">
-                  <h3
-                    className="
-                      text-[10px]
-                      font-medium
-                      leading-[1.2]
-                      text-[#29476b]
-                    "
-                  >
-                    {testimonial.name}
-                  </h3>
-
-                  <p
-                    className="
-                      mt-[2px]
-                      text-[9px]
-                      font-normal
-                      leading-[1.2]
-                      text-[#29476b]
-                    "
-                  >
-                    {testimonial.role}
-                  </p>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-
-      {/* =====================================================
-          SUBTLE BOTTOM TRANSITION
-      ===================================================== */}
-
-      <div
-        className="
-          h-[24px]
-          w-full
-          bg-[#fff8f8]
-        "
-      >
-        <div
-          className="
-            h-full
-            w-full
-            opacity-40
-            [background-image:radial-gradient(#e7caca_0.7px,transparent_0.7px)]
-            [background-size:6px_6px]
-          "
-        />
       </div>
     </section>
   );
-};
-
-export default Testimonials;
+}

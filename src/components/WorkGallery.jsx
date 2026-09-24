@@ -1,600 +1,230 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+import { X, ChevronLeft, ChevronRight, Filter, Maximize2, Sparkles, ShieldCheck, ArrowRight, Grid } from "lucide-react";
 
-// ============================================================
-// IMAGE IMPORTS
-// ============================================================
-// Put your images inside:
-// src/assets/
-//
-// Example:
-// import work1 from "../assets/work1.jpg";
-// import work2 from "../assets/work2.jpg";
-// ============================================================
-
-import work1 from "../assets/imgi_59_WhatsApp-Image-2024-01-19-at-10.45.04-AM.jpg";
-import work2 from "../assets/imgi_63_WhatsApp-Image-2024-01-19-at-10.45.03-AM.jpg";
-import work3 from "../assets/imgi_64_WhatsApp-Image-2024-01-19-at-10.45.03-AM-225x300.jpg";
-import work4 from "../assets/imgi_66_WhatsApp-Image-2024-01-19-at-10.45.03-AM-1.jpg";
-import work5 from "../assets/imgi_70_WhatsApp-Image-2024-01-19-at-10.45.01-AM.jpg";
-import work6 from "../assets/imgi_78_WhatsApp-Image-2024-01-19-at-10.44.58-AM.jpg";
-import work7 from "../assets/imgi_81_WhatsApp-Image-2024-01-19-at-10.44.58-AM-1.jpg";
-import work8 from "../assets/imgi_98_WhatsApp-Image-2024-01-19-at-10.44.40-AM.jpg";
-import work9 from "../assets/imgi_102_WhatsApp-Image-2024-01-19-at-10.44.40-AM-1.jpg";
-import work10 from "../assets/imgi_105_WhatsApp-Image-2024-01-19-at-10.44.32-AM.jpg";
-import work11 from "../assets/imgi_108_WhatsApp-Image-2024-01-19-at-10.44.30-AM.jpg";
-import work12 from "../assets/imgi_112_WhatsApp-Image-2024-01-19-at-10.44.29-AM.jpg";
-import work13 from "../assets/imgi_115_WhatsApp-Image-2024-01-19-at-10.44.25-AM.jpg";
-import work14 from "../assets/imgi_118_WhatsApp-Image-2024-01-19-at-10.44.24-AM.jpg";
-
-// ============================================================
-// GALLERY DATA
-// ============================================================
-// Add/remove images here.
-//
-// {
-//   image: yourImage,
-//   alt: "Description",
-// }
-//
-// ============================================================
-
-const galleryItems = [
-  {
-    image: work1,
-    // alt: "Roof shed work",
-  },
-  {
-    image: work2,
-    // alt: "Roof installation work",
-  },
-  {
-    image: work3,
-    // alt: "Roofing structure",
-  },
-  {
-    image: work4,
-    // alt: "Staircase installation",
-  },
-  {
-    image: work5,
-    // alt: "Roof structure work",
-  },
-  {
-    image: work6,
-    alt: "Blue roof shed",
-  },
-  {
-    image: work7,
-    alt: "Terrace roofing work",
-  },
-  {
-    image: work8,
-    alt: "Building roofing work",
-  },
-  {
-    image: work9,
-    // alt: "Residential roofing",
-  },
-  {
-    image: work10,
-    // alt: "Steel staircase work",
-  },
-  {
-    image: work11,
-    // alt: "Roofing material work",
-  },
-  {
-    image: work12,
-    // alt: "Industrial work",
-  },
+export const workGalleryItems = [
+  { image: "/image/image1.jpeg", title: "Industrial Roof Shed Erection", category: "Roof Sheds", location: "Barasat, Kolkata" },
+  { image: "/image/image2.jpeg", title: "Curved Terrace Galvalume Shed", category: "Roof Sheds", location: "Kestopur, Kolkata" },
+  { image: "/image/image3.jpeg", title: "Heavy GI Pipe Structural Framework", category: "Steel Framing", location: "Salt Lake, Kolkata" },
+  { image: "/image/image4.jpeg", title: "Custom Steel Staircase & Glass Railings", category: "Staircase & Glazing", location: "New Town, Kolkata" },
+  { image: "/image/image5.jpeg", title: "Blue Profile Color Coated Roof Shed", category: "Roof Sheds", location: "Madhyamgram, Kolkata" },
+  { image: "/image/image6.jpeg", title: "Large Industrial Factory Warehouse Roof", category: "Warehouses", location: "Dankuni Industrial Area" },
+  { image: "/image/image7.jpeg", title: "Residential Terrace Extension Shed", category: "Roof Sheds", location: "Dum Dum, Kolkata" },
+  { image: "/image/image8.jpeg", title: "Royal Blue Galvalume Terrace Roofing", category: "Roof Sheds", location: "Rajarhat, Kolkata" },
+  { image: "/image/image9.jpeg", title: "Commercial Building Steel Roof Structure", category: "Steel Framing", location: "Sodepur, Kolkata" },
+  { image: "/image/image10.jpeg", title: "High-Span Industrial Roof Truss Erection", category: "Steel Framing", location: "Howrah Industrial Belt" },
+  { image: "/image/image11.jpeg", title: "Turnkey Warehouse Side Wall Cladding", category: "Warehouses", location: "Bangar, Kolkata" },
+  { image: "/image/image12.jpeg", title: "Precision Heavy Steel Framing & Girders", category: "Steel Framing", location: "Garia, Kolkata" },
+  { image: "/image/image13.jpeg", title: "Polycarbonate Daylight Strip Roofing", category: "Roof Sheds", location: "Bidhannagar" },
+  { image: "/image/image14.jpeg", title: "Commercial Factory Roofing Handover", category: "Warehouses", location: "Jadavpur" },
+  { image: "/image/image15.jpeg", title: "Heavy Duty Factory Truss Installation", category: "Warehouses", location: "Kalyani Highway" },
+  { image: "/image/image16.jpeg", title: "Residential Car Parking Roof Shed", category: "Roof Sheds", location: "Tollygunge" },
+  { image: "/image/image17.jpeg", title: "Structural Steel Railing & Canopy Fixing", category: "Staircase & Glazing", location: "Behala" },
 ];
 
-// ============================================================
-// COMPONENT
-// ============================================================
+const categories = ["All Projects", "Roof Sheds", "Steel Framing", "Warehouses", "Staircase & Glazing"];
 
-export default function WorkGallery({
-  backgroundImage = null,
-
-  title = "Some Insights",
-
-  description = "Let’s see what we do and how we are doing that. There are some little glimpses of our everyday life...",
-}) {
+export default function WorkGallery({ onOpenQuote }) {
+  const [activeTab, setActiveTab] = useState("All Projects");
   const [selectedIndex, setSelectedIndex] = useState(null);
 
-  // ==========================================================
-  // OPEN MODAL
-  // ==========================================================
+  const filteredItems = activeTab === "All Projects"
+    ? workGalleryItems
+    : workGalleryItems.filter(item => item.category === activeTab);
 
-  const openModal = (index) => {
-    setSelectedIndex(index);
+  const openLightbox = (idx) => setSelectedIndex(idx);
+  const closeLightbox = () => setSelectedIndex(null);
+
+  const showPrevious = () => {
+    setSelectedIndex((curr) => (curr === 0 ? filteredItems.length - 1 : curr - 1));
   };
 
-  // ==========================================================
-  // CLOSE MODAL
-  // ==========================================================
-
-  const closeModal = () => {
-    setSelectedIndex(null);
+  const showNext = () => {
+    setSelectedIndex((curr) => (curr === filteredItems.length - 1 ? 0 : curr + 1));
   };
-
-  // ==========================================================
-  // PREVIOUS
-  // ==========================================================
-
-  const previousImage = () => {
-    setSelectedIndex((current) => {
-      if (current === null) return null;
-
-      return current === 0 ? galleryItems.length - 1 : current - 1;
-    });
-  };
-
-  // ==========================================================
-  // NEXT
-  // ==========================================================
-
-  const nextImage = () => {
-    setSelectedIndex((current) => {
-      if (current === null) return null;
-
-      return current === galleryItems.length - 1 ? 0 : current + 1;
-    });
-  };
-
-  // ==========================================================
-  // KEYBOARD CONTROLS
-  // ==========================================================
 
   useEffect(() => {
-    if (selectedIndex === null) {
-      return;
-    }
+    if (selectedIndex === null) return;
 
-    const handleKeyboard = (event) => {
-      switch (event.key) {
-        case "Escape":
-          closeModal();
-          break;
-
-        case "ArrowLeft":
-          previousImage();
-          break;
-
-        case "ArrowRight":
-          nextImage();
-          break;
-
-        default:
-          break;
-      }
+    const handleKey = (e) => {
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowLeft") showPrevious();
+      if (e.key === "ArrowRight") showNext();
     };
 
-    window.addEventListener("keydown", handleKeyboard);
-
-    // Prevent page scrolling when modal is open
+    window.addEventListener("keydown", handleKey);
     document.body.style.overflow = "hidden";
 
     return () => {
-      window.removeEventListener("keydown", handleKeyboard);
+      window.removeEventListener("keydown", handleKey);
       document.body.style.overflow = "";
     };
-  }, [selectedIndex]);
+  }, [selectedIndex, filteredItems]);
 
   return (
-    <section
-      id="gallery"
-      className="
-        relative
-        w-full
-        overflow-hidden
-        bg-[#F8FAFC]
-      "
-      style={
-        backgroundImage
-          ? {
-              backgroundImage: `url("${backgroundImage}")`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-            }
-          : undefined
-      }
-    >
-      {/* ======================================================
-          OPTIONAL BACKGROUND OVERLAY
-      ====================================================== */}
-
-      {backgroundImage && (
-        <div
-          className="
-            pointer-events-none
-            absolute
-            inset-0
-            bg-[#F8FAFC]/90
-          "
-        />
-      )}
-
-      {/* ======================================================
-          HEADER
-      ====================================================== */}
-
-      <div
-        className="
-          relative
-          z-10
-          mx-auto
-          w-full
-          max-w-[900px]
-
-          px-5
-          pb-7
-          pt-8
-
-          sm:px-6
-          sm:pb-8
-          sm:pt-9
-
-          md:pb-9
-          md:pt-10
-
-          lg:pb-10
-          lg:pt-11
-        "
-      >
-        <h2
-          className="
-            m-0
-            text-center
-
-            text-[24px]
-            font-bold
-            leading-[1.2]
-
-            tracking-[-0.4px]
-
-            text-[#192A3D]
-
-            sm:text-[26px]
-
-            md:text-[28px]
-
-            lg:text-[30px]
-          "
-        >
-          {title}
-        </h2>
-
-        <p
-          className="
-            mx-auto
-            mt-3
-            max-w-[650px]
-
-            text-center
-
-            text-[10px]
-            leading-[1.55]
-
-            text-[#304D6B]
-
-            sm:text-[11px]
-
-            md:text-[12px]
-          "
-        >
-          {description}
-        </p>
-      </div>
-
-      {/* ======================================================
-          MASONRY GALLERY
-      ====================================================== */}
-
-      <div
-        className="
-          relative
-          z-10
-
-          w-full
-
-          columns-2
-          gap-[4px]
-
-          sm:columns-2
-          sm:gap-[5px]
-
-          md:columns-3
-          md:gap-[5px]
-
-          lg:columns-4
-          lg:gap-[5px]
-
-          xl:columns-5
-          xl:gap-[5px]
-        "
-      >
-        {galleryItems.map((item, index) => (
-          <button
-            key={`${item.alt}-${index}`}
-            type="button"
-            onClick={() => openModal(index)}
-            aria-label={`Open image: ${item.alt}`}
-            className="
-              group
-              mb-[4px]
-              block
-              w-full
-              break-inside-avoid
-              cursor-pointer
-
-              border-0
-              bg-transparent
-              p-0
-
-              focus:outline-none
-              focus-visible:ring-2
-              focus-visible:ring-[#192A3D]
-              focus-visible:ring-inset
-
-              sm:mb-[5px]
-
-              md:mb-[5px]
-            "
-          >
-            <img
-              src={item.image}
-              alt={item.alt}
-              loading={index < 5 ? "eager" : "lazy"}
-              className="
-                block
-                h-auto
-                w-full
-
-                object-cover
-
-                transition
-                duration-300
-                ease-out
-
-                group-hover:brightness-[0.92]
-                group-hover:saturate-[1.05]
-
-                group-hover:scale-[1.01]
-              "
-            />
-          </button>
-        ))}
-      </div>
-
-      {/* ======================================================
-          MODAL
-      ====================================================== */}
-
-      {selectedIndex !== null && (
-        <div
-          className="
-            fixed
-            inset-0
-            z-[9999]
-
-            flex
-            items-center
-            justify-center
-
-            bg-black/90
-
-            px-3
-            py-5
-
-            sm:px-5
-            sm:py-7
-          "
-          role="dialog"
-          aria-modal="true"
-          aria-label="Work gallery preview"
-          onMouseDown={(event) => {
-            if (event.target === event.currentTarget) {
-              closeModal();
-            }
-          }}
-        >
-          {/* ==================================================
-              CLOSE BUTTON
-          ================================================== */}
-
-          <button
-            type="button"
-            onClick={closeModal}
-            aria-label="Close image"
-            className="
-              absolute
-              right-3
-              top-3
-              z-30
-
-              flex
-              h-10
-              w-10
-              items-center
-              justify-center
-
-              rounded-full
-
-              border
-              border-white/30
-
-              bg-black/60
-
-              text-[27px]
-              leading-none
-              text-white
-
-              transition
-              duration-200
-
-              hover:bg-white
-              hover:text-black
-
-              sm:right-5
-              sm:top-5
-              sm:h-11
-              sm:w-11
-            "
-          >
-            ×
-          </button>
-
-          {/* ==================================================
-              PREVIOUS BUTTON
-          ================================================== */}
-
-          <button
-            type="button"
-            onClick={previousImage}
-            aria-label="Previous image"
-            className="
-              absolute
-              left-2
-              top-1/2
-              z-30
-
-              flex
-              h-11
-              w-11
-              -translate-y-1/2
-              items-center
-              justify-center
-
-              rounded-full
-
-              border
-              border-white/30
-
-              bg-black/65
-
-              text-[34px]
-              font-light
-              leading-none
-              text-white
-
-              transition
-              duration-200
-
-              hover:bg-white
-              hover:text-black
-
-              sm:left-5
-              sm:h-12
-              sm:w-12
-            "
-          >
-            ‹
-          </button>
-
-          {/* ==================================================
-              NEXT BUTTON
-          ================================================== */}
-
-          <button
-            type="button"
-            onClick={nextImage}
-            aria-label="Next image"
-            className="
-              absolute
-              right-2
-              top-1/2
-              z-30
-
-              flex
-              h-11
-              w-11
-              -translate-y-1/2
-              items-center
-              justify-center
-
-              rounded-full
-
-              border
-              border-white/30
-
-              bg-black/65
-
-              text-[34px]
-              font-light
-              leading-none
-              text-white
-
-              transition
-              duration-200
-
-              hover:bg-white
-              hover:text-black
-
-              sm:right-5
-              sm:h-12
-              sm:w-12
-            "
-          >
-            ›
-          </button>
-
-          {/* ==================================================
-              MODAL IMAGE
-          ================================================== */}
-
-          <div
-            className="
-              flex
-              max-h-full
-              w-full
-              items-center
-              justify-center
-            "
-          >
-            <img
-              src={galleryItems[selectedIndex].image}
-              alt={galleryItems[selectedIndex].alt}
-              className="
-                block
-
-                max-h-[90vh]
-                max-w-[calc(100vw-90px)]
-
-                object-contain
-
-                select-none
-
-                sm:max-w-[calc(100vw-130px)]
-              "
-              draggable="false"
-            />
+    <section id="gallery" className="py-20 bg-slate-900 text-white relative overflow-hidden">
+      {/* Background elements */}
+      <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#38bdf8_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-extrabold uppercase tracking-wider">
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>Proven Real-World Portfolio</span>
           </div>
 
-          {/* ==================================================
-              COUNTER
-          ================================================== */}
+          <span className="font-script text-3xl sm:text-4xl text-amber-500 block">
+            Authentic On-Site Work
+          </span>
 
-          <div
-            className="
-              absolute
-              bottom-4
-              left-1/2
-              -translate-x-1/2
+          <h2 className="font-cinzel text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight uppercase">
+            Some Insights: <span className="text-red-500">Our Real Completed Works</span>
+          </h2>
 
-              rounded-full
+          <p className="font-lora text-slate-400 text-base sm:text-lg leading-relaxed">
+            Explore authentic photos from our daily site installations across Kolkata and West Bengal. Every project represents our commitment to precision, durability, and customer satisfaction.
+          </p>
+        </div>
 
-              bg-black/50
+        {/* Filter Category Tabs */}
+        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-12">
+          {categories.map((tab) => {
+            const isActive = activeTab === tab;
+            return (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`px-5 py-2.5 rounded-xl font-extrabold text-xs sm:text-sm transition-all duration-200 cursor-pointer ${
+                  isActive
+                    ? "bg-red-600 text-white shadow-lg shadow-red-600/30 scale-105"
+                    : "bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white border border-slate-700/60"
+                }`}
+              >
+                {tab}
+              </button>
+            );
+          })}
+        </div>
 
-              px-3
-              py-1
+        {/* Portfolio Masonry Grid */}
+        <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
+          {filteredItems.map((item, index) => (
+            <div
+              key={`${item.title}-${index}`}
+              onClick={() => openLightbox(index)}
+              className="group relative rounded-2xl overflow-hidden bg-slate-800 border border-slate-700/80 shadow-md hover:shadow-2xl transition-all duration-300 break-inside-avoid cursor-pointer"
+            >
+              <img
+                src={item.image}
+                alt={item.title}
+                loading={index < 8 ? "eager" : "lazy"}
+                className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"
+              />
 
-              text-[11px]
-              text-white/80
-            "
+              {/* Hover Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-5 flex flex-col justify-between">
+                <div className="flex justify-end">
+                  <span className="w-8 h-8 rounded-full bg-red-600 text-white flex items-center justify-center shadow-lg">
+                    <Maximize2 className="w-4 h-4" />
+                  </span>
+                </div>
+
+                <div>
+                  <span className="px-2.5 py-1 rounded-md bg-red-600/90 text-white text-[10px] font-extrabold uppercase tracking-wider inline-block mb-1">
+                    {item.category}
+                  </span>
+                  <h3 className="font-cinzel text-sm sm:text-base font-extrabold text-white leading-snug uppercase">{item.title}</h3>
+                  <p className="font-lora text-xs text-slate-300 flex items-center gap-1 mt-0.5">
+                    <span>📍</span> {item.location}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom Callout Banner */}
+        <div className="mt-16 text-center bg-slate-800/80 border border-slate-700 rounded-2xl p-6 sm:p-8 max-w-3xl mx-auto space-y-4">
+          <h3 className="font-cinzel text-xl sm:text-2xl font-bold uppercase">Have a Custom Project in Mind?</h3>
+          <p className="text-slate-300 text-sm">
+            We can replicate or customize any of our completed roof shed designs for your home, factory, or office space.
+          </p>
+          <button
+            onClick={() => onOpenQuote?.("Custom Gallery Project Request")}
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs shadow-lg shadow-red-600/30 transition-all"
           >
-            {selectedIndex + 1} / {galleryItems.length}
+            <span>Request Site Visit & Quote</span>
+            <ArrowRight className="w-4 h-4" />
+          </button>
+        </div>
+
+      </div>
+
+      {/* Lightbox Modal */}
+      {selectedIndex !== null && filteredItems[selectedIndex] && (
+        <div
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex items-center justify-center p-4"
+          onClick={closeLightbox}
+        >
+          {/* Close Button */}
+          <button
+            onClick={closeLightbox}
+            className="absolute top-4 right-4 z-50 w-11 h-11 rounded-full bg-slate-800/80 hover:bg-red-600 text-white flex items-center justify-center transition-colors text-xl font-bold"
+          >
+            <X className="w-6 h-6" />
+          </button>
+
+          {/* Prev Button */}
+          <button
+            onClick={(e) => { e.stopPropagation(); showPrevious(); }}
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-50 w-12 h-12 rounded-full bg-slate-800/80 hover:bg-white hover:text-black text-white flex items-center justify-center transition-colors"
+          >
+            <ChevronLeft className="w-7 h-7" />
+          </button>
+
+          {/* Next Button */}
+          <button
+            onClick={(e) => { e.stopPropagation(); showNext(); }}
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-50 w-12 h-12 rounded-full bg-slate-800/80 hover:bg-white hover:text-black text-white flex items-center justify-center transition-colors"
+          >
+            <ChevronRight className="w-7 h-7" />
+          </button>
+
+          {/* Lightbox Content */}
+          <div
+            className="max-w-5xl w-full max-h-[85vh] flex flex-col items-center justify-center space-y-4"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={filteredItems[selectedIndex].image}
+              alt={filteredItems[selectedIndex].title}
+              className="max-h-[72vh] max-w-full object-contain rounded-xl shadow-2xl border border-slate-800"
+            />
+
+            <div className="text-center space-y-1">
+              <span className="px-3 py-1 rounded-md bg-red-600 text-white text-xs font-extrabold uppercase tracking-wider">
+                {filteredItems[selectedIndex].category}
+              </span>
+              <h3 className="text-xl sm:text-2xl font-bold text-white">
+                {filteredItems[selectedIndex].title}
+              </h3>
+              <p className="text-xs text-slate-400">
+                Location: {filteredItems[selectedIndex].location} | Image {selectedIndex + 1} of {filteredItems.length}
+              </p>
+            </div>
+
+            <button
+              onClick={() => {
+                const title = filteredItems[selectedIndex].title;
+                closeLightbox();
+                if (onOpenQuote) onOpenQuote(`Quote for Work: ${title}`);
+              }}
+              className="px-6 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs shadow-lg shadow-red-600/30 transition-all flex items-center gap-2"
+            >
+              <span>Request Quote Like This Project</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
           </div>
         </div>
       )}

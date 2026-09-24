@@ -1,72 +1,5 @@
-import React from "react";
-import { MapPin, Phone, Mail, ExternalLink, ArrowRight } from "lucide-react";
-
-/* =========================================================
-   CONTACT DATA
-========================================================= */
-
-const contactDetails = [
-  {
-    type: "address",
-    icon: MapPin,
-    label: "Address:",
-    content: (
-      <>
-        127, Rabindranath Tagore Rd, Purbachal,
-        <br className="hidden sm:block" />
-        Nabapally, Kolkata, West Bengal 700063
-      </>
-    ),
-  },
-  {
-    type: "phone",
-    icon: Phone,
-    label: "Phone:",
-    content: "+91 72780 77092",
-    href: "tel:+917278077092",
-  },
-  {
-    type: "phone",
-    icon: Phone,
-    label: "Phone:",
-    content: "+91 90384 44874",
-    href: "tel:+919038444874",
-  },
-  {
-    type: "email",
-    icon: Mail,
-    label: "Email:",
-    content: "sovonroy90@gmail.com",
-    href: "mailto:sovonroy90@gmail.com",
-  },
-];
-
-/* =========================================================
-   QUICK LINKS
-========================================================= */
-
-const quickLinks = [
-  {
-    label: "Home",
-    href: "#home",
-  },
-  {
-    label: "Service",
-    href: "#services",
-  },
-  {
-    label: "About",
-    href: "#about",
-  },
-  {
-    label: "Gallery",
-    href: "#gallery",
-  },
-];
-
-/* =========================================================
-   MAP
-========================================================= */
+import { useState } from "react";
+import { MapPin, Phone, Mail, Clock, Send, ExternalLink, CheckCircle2, ShieldCheck, MessageSquare } from "lucide-react";
 
 const MAP_EMBED_URL =
   "https://www.google.com/maps?q=127%20Rabindranath%20Tagore%20Road%2C%20Purbachal%2C%20Nabapally%2C%20Kolkata%2C%20West%20Bengal%20700063&output=embed";
@@ -74,378 +7,271 @@ const MAP_EMBED_URL =
 const MAP_OPEN_URL =
   "https://www.google.com/maps/search/?api=1&query=127+Rabindranath+Tagore+Road,+Purbachal,+Nabapally,+Kolkata,+West+Bengal+700063";
 
-/* =========================================================
-   CONTACT COMPONENT
-========================================================= */
+export default function Contact({ prefilledService = "" }) {
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    service: prefilledService || "All Types Of Roof Sheds",
+    location: "",
+    message: "",
+  });
 
-const Contact = () => {
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!formData.name || !formData.phone) return;
+    setSubmitted(true);
+  };
+
   return (
-    <footer
-      id="contact"
-      className="
-        relative
-        w-full
-        overflow-hidden
-        bg-[#fffdfc]
-        text-[#173a60]
-      "
-    >
-      {/* =====================================================
-          MAIN CONTACT AREA
-      ===================================================== */}
+    <footer id="contact" className="bg-slate-950 text-white relative overflow-hidden pt-20 pb-8">
+      {/* Subtle Grid background */}
+      <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#38bdf8_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
 
-      <div
-        className="
-          relative
-          border-t
-          border-[#f0dddd]
-          bg-[#fffdfc]
-        "
-      >
-        {/* Subtle reference-style pattern */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-extrabold uppercase tracking-wider">
+            <Phone className="w-3.5 h-3.5" />
+            <span>Connect With Us Today</span>
+          </div>
 
-        <div
-          className="
-            pointer-events-none
-            absolute
-            inset-0
-            opacity-50
-            [background-image:repeating-linear-gradient(45deg,rgba(226,175,175,0.14)_0px,rgba(226,175,175,0.14)_1px,transparent_1px,transparent_5px),repeating-linear-gradient(-45deg,rgba(226,175,175,0.10)_0px,rgba(226,175,175,0.10)_1px,transparent_1px,transparent_5px)]
-          "
-        />
+          <span className="font-script text-3xl sm:text-4xl text-amber-500 block">
+            Get In Touch
+          </span>
 
-        <div
-          className="
-            relative
-            z-10
-            mx-auto
-            w-full
-            max-w-[1320px]
-            px-5
-            py-12
-            sm:px-7
-            sm:py-14
-            md:px-10
-            lg:px-12
-            lg:py-16
-            xl:px-0
-          "
-        >
-          <div
-            className="
-              grid
-              grid-cols-1
-              gap-12
-              md:grid-cols-2
-              lg:grid-cols-[1.65fr_0.85fr_1.25fr]
-              lg:items-start
-              lg:gap-14
-            "
-          >
-            {/* =================================================
-                CONTACT INFO
-            ================================================= */}
+          <h2 className="font-cinzel text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight uppercase">
+            Get a Free <span className="text-red-500">Site Estimate & Consultation</span>
+          </h2>
 
-            <div>
-              <h2
-                className="
-                  text-[20px]
-                  font-bold
-                  leading-tight
-                  tracking-[-0.2px]
-                  text-[#092d52]
-                  sm:text-[21px]
-                "
-              >
-                Contact Info
-              </h2>
+          <p className="font-lora text-slate-400 text-base sm:text-lg leading-relaxed">
+            Ready to build or upgrade your roof shed, warehouse, or glass facade? Call our experts or submit an inquiry below for an instant quote.
+          </p>
+        </div>
 
-              <div
-                className="
-                  mt-7
-                  space-y-5
-                  sm:mt-8
-                  sm:space-y-6
-                "
-              >
-                {contactDetails.map((item, index) => {
-                  const Icon = item.icon;
+        {/* Contact Split: Form + Info Cards + Google Map */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16">
+          
+          {/* Left Inquiry Form */}
+          <div className="lg:col-span-7 bg-slate-900/90 border border-slate-800 rounded-3xl p-8 sm:p-10 shadow-2xl space-y-6">
+            <h3 className="font-cinzel text-xl sm:text-2xl font-black text-white flex items-center gap-2 uppercase">
+              <span>Send Us Your Requirements</span>
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
+            </h3>
 
-                  const content = (
-                    <>
-                      <div
-                        className="
-                          flex
-                          h-[42px]
-                          w-[42px]
-                          shrink-0
-                          items-center
-                          justify-center
-                          rounded-full
-                          border
-                          border-[#eedede]
-                          bg-white/80
-                          text-[#31597b]
-                        "
-                      >
-                        <Icon size={20} strokeWidth={1.7} />
-                      </div>
-
-                      <div className="min-w-0 pt-[1px]">
-                        <p
-                          className="
-                            text-[15px]
-                            font-medium
-                            leading-6
-                            text-[#183e64]
-                          "
-                        >
-                          {item.label}
-                        </p>
-
-                        <p
-                          className="
-                            mt-[1px]
-                            text-[15px]
-                            leading-7
-                            text-[#31597b]
-                          "
-                        >
-                          {item.content}
-                        </p>
-                      </div>
-                    </>
-                  );
-
-                  return item.href ? (
-                    <a
-                      key={`${item.type}-${index}`}
-                      href={item.href}
-                      className="
-                        group
-                        flex
-                        items-start
-                        gap-4
-                        rounded-xl
-                        transition-all
-                        duration-300
-                        hover:-translate-y-[1px]
-                      "
-                    >
-                      {content}
-                    </a>
-                  ) : (
-                    <div
-                      key={`${item.type}-${index}`}
-                      className="flex items-start gap-4"
-                    >
-                      {content}
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* =================================================
-                QUICK LINKS
-            ================================================= */}
-
-            <div>
-              <h2
-                className="
-                  text-[20px]
-                  font-bold
-                  leading-tight
-                  text-[#092d52]
-                "
-              >
-                Quick Links
-              </h2>
-
-              <nav aria-label="Footer navigation" className="mt-6">
-                <ul className="space-y-3">
-                  {quickLinks.map((link) => (
-                    <li key={link.label}>
-                      <a
-                        href={link.href}
-                        className="
-                          group
-                          inline-flex
-                          items-center
-                          gap-1.5
-                          text-[15px]
-                          leading-6
-                          text-[#31597b]
-                          transition-colors
-                          duration-300
-                          hover:text-[#0b3157]
-                        "
-                      >
-                        <span>{link.label}</span>
-
-                        <ArrowRight
-                          size={13}
-                          className="
-                            -translate-x-1
-                            opacity-0
-                            transition-all
-                            duration-300
-                            group-hover:translate-x-0
-                            group-hover:opacity-100
-                          "
-                        />
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
-            </div>
-
-            {/* =================================================
-                GOOGLE MAP
-            ================================================= */}
-
-            <div>
-              <div
-                className="
-                  overflow-hidden
-                  rounded-[2px]
-                  border
-                  border-[#e7e2e2]
-                  bg-white
-                  shadow-[0_4px_18px_rgba(20,40,60,0.06)]
-                "
-              >
-                <div
-                  className="
-                    relative
-                    h-[250px]
-                    w-full
-                    sm:h-[280px]
-                    lg:h-[350px]
-                  "
+            {submitted ? (
+              <div className="p-8 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-center space-y-4 animate-in fade-in">
+                <div className="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto text-3xl">
+                  ✓
+                </div>
+                <h4 className="text-xl font-bold text-white">Inquiry Received Successfully!</h4>
+                <p className="text-slate-300 text-sm max-w-md mx-auto">
+                  Thank you, <strong className="text-white">{formData.name}</strong>. Our senior structural engineer will call you at <strong className="text-white">{formData.phone}</strong> within 2 hours with a detailed cost estimate.
+                </p>
+                <button
+                  onClick={() => { setSubmitted(false); setFormData({ name: "", phone: "", service: "All Types Of Roof Sheds", location: "", message: "" }); }}
+                  className="px-6 py-2 rounded-xl bg-slate-800 text-white font-bold text-xs hover:bg-slate-700 transition-colors"
                 >
-                  <iframe
-                    title="Roy Enterprise Location"
-                    src={MAP_EMBED_URL}
-                    loading="lazy"
-                    allowFullScreen
-                    referrerPolicy="no-referrer-when-downgrade"
-                    className="
-                      absolute
-                      inset-0
-                      h-full
-                      w-full
-                      border-0
-                    "
+                  Submit Another Inquiry
+                </button>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Your Full Name *</label>
+                    <input
+                      type="text"
+                      name="name"
+                      required
+                      value={formData.name}
+                      onChange={handleChange}
+                      placeholder="e.g. Sujit Purkait"
+                      className="w-full px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white text-sm focus:outline-none focus:border-red-500 transition-colors"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Phone Number *</label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      required
+                      value={formData.phone}
+                      onChange={handleChange}
+                      placeholder="+91 72780 77092"
+                      className="w-full px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white text-sm focus:outline-none focus:border-red-500 transition-colors"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Service Required</label>
+                    <select
+                      name="service"
+                      value={formData.service}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white text-sm focus:outline-none focus:border-red-500 transition-colors"
+                    >
+                      <option value="All Types Of Roof Sheds">All Types Of Roof Sheds</option>
+                      <option value="UPVC & Aluminium Glazing">UPVC & Aluminium Glazing</option>
+                      <option value="Gypsum False Ceiling">Gypsum False Ceiling</option>
+                      <option value="Toughened Glass Canopy">Toughened Glass Canopy</option>
+                      <option value="Industrial Warehouse Shed">Industrial Warehouse Shed</option>
+                      <option value="Heavy Steel Structure">Heavy Steel Structure</option>
+                      <option value="Tin Sheeting & Erection">Tin Sheeting & Erection</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Project Location</label>
+                    <input
+                      type="text"
+                      name="location"
+                      value={formData.location}
+                      onChange={handleChange}
+                      placeholder="e.g. Barasat / Salt Lake / Howrah"
+                      className="w-full px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white text-sm focus:outline-none focus:border-red-500 transition-colors"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Project Details / Roof Dimensions</label>
+                  <textarea
+                    name="message"
+                    rows={3}
+                    value={formData.message}
+                    onChange={handleChange}
+                    placeholder="Mention approximate roof area in sq ft, preferred Galvalume thickness (e.g. 0.47mm), or special requirements..."
+                    className="w-full px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white text-sm focus:outline-none focus:border-red-500 transition-colors"
                   />
+                </div>
 
-                  {/* Open in Google Maps */}
+                <button
+                  type="submit"
+                  className="w-full py-4 rounded-xl bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-extrabold text-sm shadow-xl shadow-red-600/30 transition-all flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  <Send className="w-4 h-4" />
+                  <span>Submit Free Quote Request</span>
+                </button>
+              </form>
+            )}
+          </div>
 
+          {/* Right Info Cards & Map */}
+          <div className="lg:col-span-5 space-y-6">
+            
+            {/* Quick Contact Cards */}
+            <div className="bg-slate-900/90 border border-slate-800 rounded-3xl p-6 space-y-4">
+              <h4 className="text-xs font-extrabold uppercase tracking-wider text-slate-400">Direct Office Contacts</h4>
+
+              <div className="space-y-3">
+                <a
+                  href="tel:+917278077092"
+                  className="flex items-center gap-3.5 p-3 rounded-2xl bg-slate-800/80 hover:bg-slate-800 border border-slate-700 text-white transition-colors"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-red-600/20 text-red-400 border border-red-500/30 flex items-center justify-center shrink-0">
+                    <Phone className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <div className="text-[11px] text-slate-400 font-semibold">Main Sales & Technical Line</div>
+                    <div className="text-sm font-black text-white">+91 72780 77092</div>
+                  </div>
+                </a>
+
+                <div className="flex flex-col sm:flex-row gap-2">
                   <a
-                    href={MAP_OPEN_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="
-                      absolute
-                      left-3
-                      top-3
-                      z-20
-                      inline-flex
-                      items-center
-                      gap-1
-                      rounded-sm
-                      bg-white
-                      px-3
-                      py-2
-                      text-[12px]
-                      font-medium
-                      text-[#1a73e8]
-                      shadow-[0_1px_5px_rgba(0,0,0,0.18)]
-                      transition-all
-                      duration-300
-                      hover:bg-[#f7faff]
-                    "
+                    href="tel:+917278077092"
+                    className="flex-1 flex items-center gap-2.5 p-3 rounded-2xl bg-slate-800/80 hover:bg-slate-800 border border-slate-700 text-white text-xs font-bold"
                   >
-                    Open in Maps
-                    <ExternalLink size={13} />
+                    <Phone className="w-4 h-4 text-red-400 shrink-0" />
+                    <span>+91 72780 77092</span>
                   </a>
+                  <a
+                    href="tel:+919038444874"
+                    className="flex-1 flex items-center gap-2.5 p-3 rounded-2xl bg-slate-800/80 hover:bg-slate-800 border border-slate-700 text-white text-xs font-bold"
+                  >
+                    <Phone className="w-4 h-4 text-red-400 shrink-0" />
+                    <span>+91 90384 44874</span>
+                  </a>
+                </div>
+
+                <a
+                  href="mailto:sovonroy90@gmail.com"
+                  className="flex items-center gap-3.5 p-3 rounded-2xl bg-slate-800/80 hover:bg-slate-800 border border-slate-700 text-white transition-colors"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-blue-600/20 text-blue-400 border border-blue-500/30 flex items-center justify-center shrink-0">
+                    <Mail className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <div className="text-[11px] text-slate-400 font-semibold">Email Us</div>
+                    <div className="text-sm font-bold text-white">sovonroy90@gmail.com</div>
+                  </div>
+                </a>
+
+                <div className="flex items-start gap-3.5 p-3 rounded-2xl bg-slate-800/80 border border-slate-700 text-slate-300 text-xs">
+                  <MapPin className="w-5 h-5 text-red-400 shrink-0 mt-0.5" />
+                  <span>127, Rabindranath Tagore Rd, Purbachal, Nabapally, Kolkata, West Bengal 700063</span>
                 </div>
               </div>
             </div>
+
+            {/* Google Map Box */}
+            <div className="rounded-3xl overflow-hidden border border-slate-800 bg-slate-900 shadow-2xl relative">
+              <div className="h-60 w-full relative">
+                <iframe
+                  title="Roy Enterprise Map Location"
+                  src={MAP_EMBED_URL}
+                  loading="lazy"
+                  allowFullScreen
+                  className="w-full h-full border-0"
+                />
+
+                <a
+                  href={MAP_OPEN_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute top-3 left-3 bg-white text-slate-900 px-3 py-1.5 rounded-lg text-xs font-extrabold shadow-lg flex items-center gap-1.5 hover:bg-slate-100 transition-colors"
+                >
+                  <span>Open in Google Maps</span>
+                  <ExternalLink className="w-3.5 h-3.5 text-blue-600" />
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        {/* Footer Credit & Copyright */}
+        <div className="pt-8 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400 text-center sm:text-left">
+          <div>
+            © {new Date().getFullYear()} <strong className="text-white">Roy Enterprise</strong>. All Rights Reserved. Master Roofing & Steel Fabrication.
+          </div>
+
+          <div className="flex items-center gap-2">
+            <span>Website designed & developed by</span>
+            <a
+              href="https://www.teamdeoskolkata.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-bold text-white hover:text-red-400 transition-colors inline-flex items-center gap-1"
+            >
+              Digital Exposure Online Service
+              <ExternalLink className="w-3 h-3 text-red-400" />
+            </a>
           </div>
         </div>
-      </div>
 
-      {/* =====================================================
-          DIGITAL EXPOSURE BANNER
-      ===================================================== */}
-
-      <div
-        className="
-          border-t
-          border-[#eee5e5]
-          bg-[#fff8f8]
-        "
-      >
-        <div
-          className="
-            mx-auto
-            flex
-            min-h-[70px]
-            w-full
-            max-w-[1320px]
-            flex-col
-            items-center
-            justify-center
-            gap-1
-            px-5
-            py-4
-            text-center
-            sm:min-h-[64px]
-            sm:flex-row
-            sm:gap-2
-            sm:px-7
-            md:px-10
-            lg:px-12
-            xl:px-0
-          "
-        >
-          <span
-            className="
-              text-[12px]
-              leading-5
-              text-[#31597b]
-              sm:text-[13px]
-            "
-          >
-            Website designed & developed by
-          </span>
-
-          <a
-            href="https://www.teamdeoskolkata.in/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="
-              inline-flex
-              items-center
-              gap-1
-              text-[12px]
-              font-bold
-              text-[#173a60]
-              transition-colors
-              duration-300
-              hover:text-red-700
-              sm:text-[13px]
-            "
-          >
-            Digital Exposure Online Service
-            <ExternalLink size={12} />
-          </a>
-        </div>
       </div>
     </footer>
   );
-};
-
-export default Contact;
+}

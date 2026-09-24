@@ -1,544 +1,196 @@
-import {
-  UserRound,
-  Paintbrush,
-  Banknote,
-  BriefcaseBusiness,
-  CheckCircle2,
-} from "lucide-react";
-
-// import whyRoyImage from "../assets/why_roy.jpg";
-import how_it_works from "../assets/how_it_works.jpg";
-
-// ============================================================
-// PROCESS DATA
-// ============================================================
+import { UserRound, Paintbrush, Banknote, BriefcaseBusiness, CheckCircle2, ShieldCheck, Award, Phone, ArrowRight, Sparkles } from "lucide-react";
+import howItWorksImg from "../assets/how_it_works.jpg";
+import architecturalImg from "../assets/imgi_47_imageye___-_imgi_101_pexels-photo-257636-1536x1024.jpg";
 
 const processSteps = [
   {
-    title: "Consultancy",
-    description:
-      "First of all we try to understand your need and vision about the project we are going to take.",
+    step: "01",
+    title: "Free Site Inspection & Consultation",
+    description: "Our senior structural engineer visits your location to measure dimensions, evaluate wind/sun orientation, and understand your exact requirements.",
     icon: UserRound,
   },
   {
-    title: "Design",
-    description:
-      "Then we offer a concept design to match your vision that embodies both aesthetic and user experience.",
+    step: "02",
+    title: "Custom 3D Design & Transparent Budgeting",
+    description: "We provide an optimized structural design along with a transparent itemized quotation matching your exact budget with zero hidden fees.",
     icon: Paintbrush,
   },
   {
-    title: "Budgeting",
-    description:
-      "This process walks besides the designing process - smart budgeting is very important part.",
+    step: "03",
+    title: "Certified Tata Material Sourcing",
+    description: "We procure 100% genuine Tata Galvalume sheets, heavy-gauge GI hollow section tubes, and rubberized leak-proof fasteners directly from authorized mills.",
     icon: Banknote,
   },
   {
-    title: "Execution",
-    description:
-      "And here comes the execution part where we execute the plan - as per the planing.",
+    step: "04",
+    title: "Precision Erection & Handover",
+    description: "Our certified master fabricators assemble the structure with precision MIG welding, anti-corrosion primer coating, and leak-proof sheet locking.",
     icon: BriefcaseBusiness,
   },
 ];
 
-// ============================================================
-// WHY ROY ENTERPRISE FEATURES
-// ============================================================
-
-const leftFeatures = [
-  "Budget-friendly solutions",
-  "Long-lasting durability",
-  "Versatile designs",
-  "Warranty-backed services",
-  "Trusted expertise",
+const whyFeatures = [
+  "25+ Years Certified Roofing Track Record",
+  "100% Genuine Tata & Jindal Galvalume",
+  "Leak-Proof Fasteners & Rubber Washers",
+  "Heavy Structural GI Steel Framing",
+  "Budget-Friendly & Transparent Costing",
+  "50+ Certified Master Fabricators",
+  "10-Year Weathering Warranty",
+  "On-Time Execution Guarantee",
 ];
 
-const rightFeatures = [
-  "Roof Shed",
-  "Aluminium/ Upvc Door & Window.",
-  "Structure, Fabrication",
-  "False ceiling",
-];
-
-// ============================================================
-// COMPONENT
-// ============================================================
-
-export default function HowItWorks({
-  backgroundImage = null,
-
-  // Easy way to replace the main lower image
-  image = how_it_works,
-
-  title = "How It Works",
-
-  description = `Our strength lies in our passion for creativity, bringing unique
-  elements to both modern and traditional designs. We take pride in designing
-  and planning of space that combine the ergonomic, functional, and aesthetic
-  components that contribute to a right environment.`,
-
-  questionTitle = (
-    <>
-      Do you have any question?
-      <br />
-      Feel free to contact us anytime.
-    </>
-  ),
-
-  whyTitle = "Why Roy Enterprise?",
-
-  whyDescription = `Roy Enterprise is a farm full of a professional and passionate
-  team with the needed expertise in the craft. Roy Enterprise offers a fine
-  balance between quality and affordability. You should embrace and keep it
-  organized where you spend valuable time – partner with us and fall in love
-  with your place. Let’s 'UNLOCK THE JOY OF LIVING!'`,
-
-  contactText = "Contact us now",
-}) {
+export default function HowItWorks({ onOpenQuote }) {
   return (
-    <section
-      id="about"
-      className="relative w-full overflow-hidden bg-[#F8FAFC]"
-      style={
-        backgroundImage
-          ? {
-              backgroundImage: `url(${backgroundImage})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-            }
-          : undefined
-      }
-    >
-      {/* ========================================================
-          OPTIONAL BACKGROUND OVERLAY
-      ======================================================== */}
-
-      {backgroundImage && <div className="absolute inset-0 bg-[#F8FAFC]/90" />}
-
-      {/* ========================================================
-          MAIN CONTAINER
-      ======================================================== */}
-
-      <div
-        className="
-          relative
-          z-10
-          mx-auto
-          w-full
-          max-w-[920px]
-
-          px-5
-          py-10
-
-          sm:px-6
-          sm:py-12
-
-          md:px-8
-          md:py-14
-
-          lg:px-0
-          lg:py-5
-        "
-      >
-        {/* ======================================================
-            TOP SECTION
-            LEFT EMPTY/VISUAL AREA
-            RIGHT HOW IT WORKS
-        ====================================================== */}
-
-        <div
-          className="
-            grid
-            w-full
-            grid-cols-1
-            gap-10
-
-            lg:grid-cols-[1fr_400px]
-            lg:gap-[55px]
-          "
-        >
-          {/* ====================================================
-              LEFT VISUAL AREA
-
-              Add an image here if you want one.
-
-              Example:
-              leftImage="/src/assets/work.jpg"
-          ==================================================== */}
-
-          <div
-            className="
-              hidden
-              min-h-[400px]
-
-              lg:block
-            "
-          >
-            {/* 
-              Intentionally empty.
-
-              The supplied screenshot has a large blank/visual
-              area on the left side of the "How It Works" section.
-
-              You can add an image/background here later.
-            */}
+    <section id="about" className="py-20 bg-slate-50 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-100 border border-red-200 text-red-700 text-xs font-extrabold uppercase tracking-wider">
+            <Award className="w-3.5 h-3.5" />
+            <span>Proven Workflow & Trust</span>
           </div>
 
-          {/* ====================================================
-              HOW IT WORKS
-          ==================================================== */}
+          <span className="font-script text-3xl sm:text-4xl text-amber-600 block">
+            Seamless Execution
+          </span>
 
-          <div className="w-full">
-            <h2
-              className="
-                m-0
-                text-[24px]
-                font-bold
-                leading-[1.2]
-                tracking-[-0.3px]
-                text-[#192A3D]
+          <h2 className="font-cinzel text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight uppercase">
+            How We Work & <span className="text-red-600">Why Choose Roy Enterprise</span>
+          </h2>
 
-                sm:text-[25px]
+          <p className="font-lora text-slate-600 text-base sm:text-lg leading-relaxed">
+            Our strength lies in our passion for structural precision, delivering lifetime roofing durability that combines ergonomic design, safety, and aesthetic beauty.
+          </p>
+        </div>
 
-                md:text-[26px]
-              "
-            >
-              {title}
-            </h2>
+        {/* Top Split: Architectural Image + Process Steps */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-20">
+          
+          {/* Left Visual Image Showcase */}
+          <div className="lg:col-span-5 relative">
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-200 group">
+              <img
+                src={architecturalImg}
+                alt="Roy Enterprise Architectural Roof Construction"
+                className="w-full h-[480px] object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
 
-            <p
-              className="
-                mt-3
-                max-w-[400px]
-                text-[11px]
-                font-normal
-                leading-[1.55]
-                text-[#304D6B]
+              <div className="absolute bottom-6 left-6 right-6 text-white p-4 rounded-2xl bg-slate-900/80 backdrop-blur-md border border-slate-700">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-red-600 flex items-center justify-center text-white font-extrabold text-lg">
+                    25+
+                  </div>
+                  <div>
+                    <h4 className="font-cinzel font-extrabold text-sm text-white uppercase">Years of Craftsmanship</h4>
+                    <p className="font-lora text-xs text-slate-300">Over 1,000+ roof sheds completed in Kolkata</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
-                sm:text-[12px]
+          {/* Right Process Steps */}
+          <div className="lg:col-span-7 space-y-6">
+            <h3 className="font-cinzel text-2xl sm:text-3xl font-extrabold text-slate-900 uppercase">
+              Our Step-by-Step Construction Process
+            </h3>
 
-                md:text-[12px]
-              "
-            >
-              {description}
-            </p>
-
-            {/* PROCESS ITEMS */}
-
-            <div className="mt-4 flex flex-col gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {processSteps.map((step) => {
                 const Icon = step.icon;
-
                 return (
                   <div
-                    key={step.title}
-                    className="
-                      flex
-                      w-full
-                      items-start
-                      gap-3
-                    "
+                    key={step.step}
+                    className="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-sm hover:shadow-md transition-all space-y-3"
                   >
-                    {/* CIRCLE ICON */}
-
-                    <div
-                      className="
-                        flex
-                        h-[60px]
-                        w-[60px]
-                        shrink-0
-                        items-center
-                        justify-center
-                        rounded-full
-                        bg-[#6C7784]
-                        text-white
-
-                        sm:h-[62px]
-                        sm:w-[62px]
-                      "
-                    >
-                      <Icon size={29} strokeWidth={2} />
+                    <div className="flex items-center justify-between">
+                      <div className="w-10 h-10 rounded-xl bg-red-50 text-red-600 border border-red-100 flex items-center justify-center font-bold">
+                        <Icon className="w-5 h-5" />
+                      </div>
+                      <span className="text-xs font-black text-slate-300">{step.step}</span>
                     </div>
 
-                    {/* TEXT */}
-
-                    <div className="min-w-0 flex-1 pt-1">
-                      <h3
-                        className="
-                          m-0
-                          text-[18px]
-                          font-bold
-                          leading-[1.2]
-                          text-[#192A3D]
-
-                          sm:text-[19px]
-
-                          md:text-[20px]
-                        "
-                      >
-                        {step.title}
-                      </h3>
-
-                      <p
-                        className="
-                          mt-2
-                          max-w-[330px]
-                          text-[10px]
-                          font-normal
-                          leading-[1.5]
-                          text-[#304D6B]
-
-                          sm:text-[11px]
-                        "
-                      >
-                        {step.description}
-                      </p>
-                    </div>
+                    <h4 className="font-cinzel text-sm sm:text-base font-extrabold text-slate-900 uppercase">{step.title}</h4>
+                    <p className="font-lora text-xs text-slate-600 leading-relaxed">{step.description}</p>
                   </div>
                 );
               })}
             </div>
-
-            {/* CONTACT BUTTON */}
-
-            <div className="mt-4 flex justify-start">
-              <a
-                href="#contact"
-                className="
-                  inline-flex
-                  min-h-[36px]
-                  items-center
-                  justify-center
-                  rounded-[3px]
-                  bg-[#6C7784]
-                  px-6
-                  text-[11px]
-                  font-medium
-                  text-white
-                  transition-all
-                  duration-200
-
-                  hover:bg-[#192A3D]
-                "
-              >
-                {contactText}
-              </a>
-            </div>
           </div>
+
         </div>
 
-        {/* ======================================================
-            LOWER SECTION
-        ====================================================== */}
+        {/* Lower Split: Why Roy Enterprise Showcase */}
+        <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-3xl p-8 sm:p-12 text-white shadow-2xl relative overflow-hidden">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            
+            {/* Left Info */}
+            <div className="lg:col-span-6 space-y-6">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-extrabold uppercase">
+                <ShieldCheck className="w-4 h-4 text-red-400" />
+                <span>Why Partner With Us</span>
+              </div>
 
-        <div
-          className="
-            mt-10
-            grid
-            grid-cols-1
-            gap-8
+              <h3 className="font-cinzel text-3xl sm:text-4xl font-black tracking-tight uppercase">
+                Unlock the Joy of Living Under a <span className="text-red-500">Perfect Roof</span>
+              </h3>
 
-            sm:mt-12
+              <p className="font-lora text-slate-300 text-sm sm:text-base leading-relaxed">
+                Roy Enterprise consists of a passionate team of master fabricators with decades of experience in the craft. We offer the finest balance between unyielding structural safety and affordability.
+              </p>
 
-            md:gap-10
-
-            lg:mt-[-5px]
-            lg:grid-cols-[380px_1fr]
-            lg:gap-[36px]
-          "
-        >
-          {/* ====================================================
-              LEFT SIDE
-          ==================================================== */}
-
-          <div className="w-full">
-            {/* QUESTION */}
-
-            <h2
-              className="
-                m-0
-                text-[21px]
-                font-bold
-                leading-[1.15]
-                text-[#192A3D]
-
-                sm:text-[22px]
-
-                md:text-[23px]
-              "
-            >
-              {questionTitle}
-            </h2>
-
-            {/* IMAGE */}
-
-            <div
-              className="
-                mt-5
-                w-full
-                overflow-hidden
-                border
-                border-[#222]
-                bg-white
-                shadow-[0_2px_7px_rgba(0,0,0,0.25)]
-              "
-            >
-              <img
-                src={image}
-                alt="Roy Enterprise"
-                className="
-                  block
-                  aspect-[1.48/1]
-                  h-auto
-                  w-full
-                  object-cover
-                "
-                loading="lazy"
-              />
-            </div>
-          </div>
-
-          {/* ====================================================
-              RIGHT SIDE
-          ==================================================== */}
-
-          <div className="w-full pt-0 lg:pt-[68px]">
-            <h2
-              className="
-                m-0
-                text-[21px]
-                font-bold
-                leading-[1.2]
-                text-[#192A3D]
-
-                sm:text-[22px]
-
-                md:text-[23px]
-              "
-            >
-              {whyTitle}
-            </h2>
-
-            <p
-              className="
-                mt-3
-                max-w-[390px]
-                text-[10px]
-                leading-[1.55]
-                text-[#304D6B]
-
-                sm:text-[11px]
-              "
-            >
-              {whyDescription}
-            </p>
-
-            {/* ==================================================
-                FEATURES
-            ================================================== */}
-
-            <div
-              className="
-                mt-5
-                grid
-                grid-cols-1
-                gap-1
-
-                sm:grid-cols-2
-                sm:gap-x-5
-              "
-            >
-              {/* LEFT FEATURES */}
-
-              <div className="flex flex-col gap-1">
-                {leftFeatures.map((feature) => (
-                  <div
-                    key={feature}
-                    className="
-                      flex
-                      items-center
-                      gap-1.5
-                      text-[10px]
-                      leading-[1.4]
-                      text-[#1769FF]
-
-                      sm:text-[11px]
-                    "
-                  >
-                    <CheckCircle2
-                      size={11}
-                      strokeWidth={3}
-                      className="shrink-0"
-                    />
-
-                    <span>{feature}</span>
+              {/* Checklist */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                {whyFeatures.map((feat, idx) => (
+                  <div key={idx} className="flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-slate-200">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                    <span className="font-lora">{feat}</span>
                   </div>
                 ))}
               </div>
 
-              {/* RIGHT FEATURES */}
+              <div className="pt-4 flex items-center gap-4">
+                <button
+                  onClick={() => onOpenQuote?.("Why Choose Us Inspection")}
+                  className="font-cinzel px-7 py-3.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-red-600/30 transition-all flex items-center gap-2 cursor-pointer"
+                >
+                  <span>Book Free Inspection</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
 
-              <div className="flex flex-col gap-1">
-                {rightFeatures.map((feature) => (
-                  <div
-                    key={feature}
-                    className="
-                      flex
-                      items-center
-                      gap-1.5
-                      text-[10px]
-                      leading-[1.4]
-                      text-[#1769FF]
-
-                      sm:text-[11px]
-                    "
-                  >
-                    <CheckCircle2
-                      size={11}
-                      strokeWidth={3}
-                      className="shrink-0"
-                    />
-
-                    <span>{feature}</span>
-                  </div>
-                ))}
+                <a
+                  href="tel:+917278077092"
+                  className="font-cinzel px-6 py-3.5 rounded-xl border border-slate-700 hover:border-slate-500 text-white font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2"
+                >
+                  <Phone className="w-4 h-4 text-red-400" />
+                  <span>+91 72780 77092</span>
+                </a>
               </div>
             </div>
+
+            {/* Right Image Container */}
+            <div className="lg:col-span-6 relative">
+              <div className="relative rounded-2xl overflow-hidden border border-slate-700 shadow-2xl">
+                <img
+                  src={howItWorksImg}
+                  alt="Roy Enterprise Team Work"
+                  className="w-full h-80 sm:h-96 object-cover object-center"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4 text-center">
+                  <span className="font-script text-xl text-amber-400 font-bold block">
+                    "Craftsmanship Beyond Expectation"
+                  </span>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
 
-        {/* ======================================================
-            SOME INSIGHTS
-        ====================================================== */}
-
-        <div
-          className="
-            mt-12
-            border-t
-            border-transparent
-            pt-0
-
-            sm:mt-14
-
-            lg:mt-14
-          "
-        >
-          <h2
-            className="
-              m-0
-              text-[21px]
-              font-bold
-              leading-[1.2]
-              text-[#192A3D]
-
-              sm:text-[22px]
-
-              md:text-[23px]
-            "
-          >
-            Some Insights
-          </h2>
-        </div>
       </div>
     </section>
   );

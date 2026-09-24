@@ -1,534 +1,227 @@
-import { useEffect, useState } from "react";
-import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { useState, useEffect } from "react";
+import { X, ChevronLeft, ChevronRight, Maximize2, ShieldCheck, ArrowRight, Sparkles } from "lucide-react";
 
-// ============================================================
-// IMPORT YOUR IMAGES HERE
-// ============================================================
-
-import imgi_2 from "../assets/imgi_2.jpg";
-import imgi_3 from "../assets/imgi_3.jpg";
-import imgi_4 from "../assets/imgi_4.jpg";
-import imgi_5 from "../assets/imgi_5.jpg";
-import imgi_6 from "../assets/imgi_6.jpg";
-import imgi_7 from "../assets/imgi_7.jpg";
-import imgi_8 from "../assets/imgi_8.jpg";
-
-// ============================================================
-// GALLERY DATA
-// ============================================================
-//
-// To add another image:
-// 1. Put the image inside src/assets/
-// 2. Import it above
-// 3. Add one object here
-//
-// Example:
-//
-// import anotherImage from "../assets/another_image.jpg";
-//
-// {
-//   title: "Another Service",
-//   image: anotherImage,
-// }
-//
-// ============================================================
-
-const galleryItems = [
+export const primaryGalleryItems = [
   {
-    title: "All Types Of Roof shed",
-    image: imgi_2,
+    title: "All Types Of Roof Sheds",
+    subtitle: "Tata Galvalume Curved & Slope Sheds",
+    image: "/image/image1.jpeg",
+    badge: "Roofing",
   },
-
   {
-    title: "UPVC, Aluminium Door And Window",
-    image: imgi_3,
+    title: "UPVC, Aluminium Door & Window Systems",
+    subtitle: "Soundproof Architectural Glazing",
+    image: "/image/image2.jpeg",
+    badge: "Glazing",
   },
-
   {
-    title: "Gypsum and Armstrong False Ceiling work",
-    image: imgi_4,
+    title: "Gypsum & Armstrong False Ceiling Work",
+    subtitle: "Decorative Acoustic Ceilings",
+    image: "/image/image3.jpeg",
+    badge: "Ceilings",
   },
-
   {
-    title: "Toughened Glass Fixing",
-    image: imgi_5,
+    title: "Toughened Glass Fixing & Canopies",
+    subtitle: "Frameless Glass Entrance Systems",
+    image: "/image/image4.jpeg",
+    badge: "Glasswork",
   },
-
   {
-    title: "Complete warehouse",
-    image: imgi_6,
+    title: "Complete Industrial Warehouse Infrastructure",
+    subtitle: "PEB Structural Framing & Wall Cladding",
+    image: "/image/image5.jpeg",
+    badge: "Warehouses",
   },
-
   {
-    title: "Heavy Steel Structures",
-    image: imgi_7,
+    title: "Heavy Steel Structures & Girders",
+    subtitle: "ISMB Beams & Structural Trusses",
+    image: "/image/image6.jpeg",
+    badge: "Steelwork",
   },
-
   {
-    title: "Erection & Tin Sheeting",
-    image: imgi_8,
+    title: "Erection & Tin Sheeting Services",
+    subtitle: "Profile Sheet Replacement & Weatherproofing",
+    image: "/image/image7.jpeg",
+    badge: "Sheeting",
   },
 ];
 
-export default function Gallery() {
-  // ==========================================================
-  // MODAL STATE
-  // ==========================================================
-
+export default function Gallery({ onOpenQuote }) {
   const [selectedIndex, setSelectedIndex] = useState(null);
 
-  // ==========================================================
-  // OPEN MODAL
-  // ==========================================================
-
-  const openModal = (index) => {
-    setSelectedIndex(index);
-  };
-
-  // ==========================================================
-  // CLOSE MODAL
-  // ==========================================================
-
-  const closeModal = () => {
-    setSelectedIndex(null);
-  };
-
-  // ==========================================================
-  // PREVIOUS IMAGE
-  // ==========================================================
+  const openModal = (index) => setSelectedIndex(index);
+  const closeModal = () => setSelectedIndex(null);
 
   const showPrevious = () => {
-    setSelectedIndex((current) => {
-      if (current === null) return null;
-
-      return current === 0 ? galleryItems.length - 1 : current - 1;
-    });
+    setSelectedIndex((current) => (current === 0 ? primaryGalleryItems.length - 1 : current - 1));
   };
-
-  // ==========================================================
-  // NEXT IMAGE
-  // ==========================================================
 
   const showNext = () => {
-    setSelectedIndex((current) => {
-      if (current === null) return null;
-
-      return current === galleryItems.length - 1 ? 0 : current + 1;
-    });
+    setSelectedIndex((current) => (current === primaryGalleryItems.length - 1 ? 0 : current + 1));
   };
-
-  // ==========================================================
-  // KEYBOARD CONTROLS
-  // ==========================================================
 
   useEffect(() => {
     if (selectedIndex === null) return;
 
     const handleKeyboard = (event) => {
-      if (event.key === "Escape") {
-        closeModal();
-      }
-
-      if (event.key === "ArrowLeft") {
-        showPrevious();
-      }
-
-      if (event.key === "ArrowRight") {
-        showNext();
-      }
+      if (event.key === "Escape") closeModal();
+      if (event.key === "ArrowLeft") showPrevious();
+      if (event.key === "ArrowRight") showNext();
     };
 
     window.addEventListener("keydown", handleKeyboard);
-
-    // Prevent background scrolling while modal is open
     document.body.style.overflow = "hidden";
 
     return () => {
       window.removeEventListener("keydown", handleKeyboard);
-
       document.body.style.overflow = "";
     };
   }, [selectedIndex]);
 
   return (
-    <>
-      {/* ======================================================
-          GALLERY SECTION
-      ====================================================== */}
+    <section className="py-20 bg-slate-900 text-white relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-extrabold uppercase tracking-wider">
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>Master Craftsman Gallery</span>
+          </div>
 
-      <section
-        className="
-          w-full
-          bg-[#F8FAFC]
+          <span className="font-script text-3xl sm:text-4xl text-amber-500 block">
+            Excellence In Execution
+          </span>
 
-          px-4
-          py-8
+          <h2 className="font-cinzel text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight uppercase">
+            Our Core <span className="text-red-500">Service Showcase</span>
+          </h2>
 
-          sm:px-5
-          sm:py-10
+          <p className="font-lora text-slate-400 text-base sm:text-lg leading-relaxed">
+            Click on any service project to open high-resolution view, inspect construction details, or request a customized cost estimate.
+          </p>
+        </div>
 
-          md:px-6
-          md:py-12
-
-          lg:px-8
-          lg:py-14
-        "
-      >
-        {/* ====================================================
-            GALLERY CONTAINER
-        ==================================================== */}
-
-        <div
-          className="
-            mx-auto
-            flex
-            w-full
-            max-w-[650px]
-            flex-col
-            items-center
-          "
-        >
-          {/* ==================================================
-              GALLERY ITEMS
-          ================================================== */}
-
-          {galleryItems.map((item, index) => (
-            <article
+        {/* Gallery Showcase Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {primaryGalleryItems.map((item, index) => (
+            <div
               key={`${item.title}-${index}`}
-              className="
-                flex
-                w-full
-                flex-col
-                items-center
-
-                mb-5
-
-                sm:mb-6
-
-                md:mb-7
-              "
+              onClick={() => openModal(index)}
+              className="group relative bg-slate-800 rounded-3xl overflow-hidden border border-slate-700/80 shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer flex flex-col justify-between"
             >
-              {/* ==============================================
-                  TITLE
-              ============================================== */}
-
-              <h2
-                className="
-                  m-0
-                  px-2
-                  text-center
-
-                  text-[22px]
-                  font-bold
-                  leading-[1.2]
-
-                  text-[#192A3D]
-
-                  sm:text-[24px]
-
-                  md:text-[26px]
-
-                  lg:text-[27px]
-                "
-              >
-                {item.title}
-              </h2>
-
-              {/* ==============================================
-                  IMAGE
-              ============================================== */}
-
-              <button
-                type="button"
-                onClick={() => openModal(index)}
-                className="
-                  group
-                  mt-3
-                  block
-                  w-full
-                  cursor-pointer
-                  border-0
-                  bg-transparent
-                  p-0
-
-                  focus:outline-none
-                "
-                aria-label={`Open ${item.title}`}
-              >
+              {/* Image Container */}
+              <div className="relative h-64 overflow-hidden bg-slate-950">
                 <img
                   src={item.image}
                   alt={item.title}
                   loading={index === 0 ? "eager" : "lazy"}
-                  className="
-                    mx-auto
-                    block
-                    h-auto
-                    w-full
-
-                    border
-                    border-[#333333]
-
-                    object-contain
-
-                    shadow-[0_2px_7px_rgba(0,0,0,0.28)]
-
-                    transition
-                    duration-300
-
-                    group-hover:shadow-[0_5px_15px_rgba(0,0,0,0.35)]
-                    group-hover:brightness-[0.97]
-                  "
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                 />
-              </button>
-            </article>
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80 group-hover:opacity-60 transition-opacity" />
+
+                <span className="absolute top-4 left-4 bg-red-600 text-white text-[10px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-md shadow-md">
+                  {item.badge}
+                </span>
+
+                <button
+                  type="button"
+                  aria-label={`Open modal for ${item.title}`}
+                  className="absolute top-4 right-4 w-9 h-9 rounded-lg bg-slate-900/80 text-white flex items-center justify-center backdrop-blur-sm opacity-0 group-hover:opacity-100 hover:bg-red-600 transition-all shadow-md"
+                >
+                  <Maximize2 className="w-4 h-4" />
+                </button>
+              </div>
+
+              {/* Title & Action */}
+              <div className="p-6 space-y-4">
+                <div>
+                  <span className="text-xs text-red-400 font-semibold uppercase tracking-wider block">
+                    {item.subtitle}
+                  </span>
+                  <h3 className="font-cinzel text-xl font-bold text-white leading-snug group-hover:text-red-400 transition-colors uppercase">
+                    {item.title}
+                  </h3>
+                </div>
+
+                <div className="pt-2 border-t border-slate-700/60 flex items-center justify-between text-xs text-slate-300 font-semibold">
+                  <span className="flex items-center gap-1 text-emerald-400">
+                    ✓ Certified Installation
+                  </span>
+                  <span className="text-red-400 group-hover:translate-x-1 transition-transform flex items-center gap-1">
+                    Expand Photo →
+                  </span>
+                </div>
+              </div>
+            </div>
           ))}
         </div>
-      </section>
 
-      {/* ======================================================
-          IMAGE MODAL
-      ====================================================== */}
+      </div>
 
-      {selectedIndex !== null && (
+      {/* Image Modal */}
+      {selectedIndex !== null && primaryGalleryItems[selectedIndex] && (
         <div
-          className="
-            fixed
-            inset-0
-            z-[9999]
-
-            flex
-            items-center
-            justify-center
-
-            bg-black/90
-
-            px-3
-            py-6
-
-            sm:px-5
-            sm:py-8
-          "
-          role="dialog"
-          aria-modal="true"
-          aria-label="Image gallery"
-          onMouseDown={(event) => {
-            // Close only when clicking the dark background
-            if (event.target === event.currentTarget) {
-              closeModal();
-            }
-          }}
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex items-center justify-center p-4"
+          onClick={closeModal}
         >
-          {/* ==================================================
-              CLOSE BUTTON
-          ================================================== */}
-
           <button
-            type="button"
             onClick={closeModal}
-            aria-label="Close gallery"
-            className="
-              absolute
-              right-4
-              top-4
-              z-20
-
-              flex
-              h-11
-              w-11
-              items-center
-              justify-center
-
-              rounded-full
-
-              border
-              border-white/30
-
-              bg-black/50
-
-              text-white
-
-              transition
-              duration-200
-
-              hover:bg-white
-              hover:text-black
-
-              sm:right-6
-              sm:top-6
-            "
+            className="absolute top-4 right-4 z-50 w-11 h-11 rounded-full bg-slate-800/80 hover:bg-red-600 text-white flex items-center justify-center transition-colors text-xl font-bold"
           >
-            <X size={25} strokeWidth={2} />
+            <X className="w-6 h-6" />
           </button>
-
-          {/* ==================================================
-              PREVIOUS BUTTON
-          ================================================== */}
 
           <button
-            type="button"
-            onClick={showPrevious}
-            aria-label="Previous image"
-            className="
-              absolute
-              left-2
-              top-1/2
-              z-20
-
-              flex
-              h-11
-              w-11
-              -translate-y-1/2
-              items-center
-              justify-center
-
-              rounded-full
-
-              border
-              border-white/30
-
-              bg-black/60
-
-              text-white
-
-              transition
-              duration-200
-
-              hover:bg-white
-              hover:text-black
-
-              sm:left-5
-              sm:h-12
-              sm:w-12
-            "
+            onClick={(e) => { e.stopPropagation(); showPrevious(); }}
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-50 w-12 h-12 rounded-full bg-slate-800/80 hover:bg-white hover:text-black text-white flex items-center justify-center transition-colors"
           >
-            <ChevronLeft size={28} />
+            <ChevronLeft className="w-7 h-7" />
           </button>
-
-          {/* ==================================================
-              NEXT BUTTON
-          ================================================== */}
 
           <button
-            type="button"
-            onClick={showNext}
-            aria-label="Next image"
-            className="
-              absolute
-              right-2
-              top-1/2
-              z-20
-
-              flex
-              h-11
-              w-11
-              -translate-y-1/2
-              items-center
-              justify-center
-
-              rounded-full
-
-              border
-              border-white/30
-
-              bg-black/60
-
-              text-white
-
-              transition
-              duration-200
-
-              hover:bg-white
-              hover:text-black
-
-              sm:right-5
-              sm:h-12
-              sm:w-12
-            "
+            onClick={(e) => { e.stopPropagation(); showNext(); }}
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-50 w-12 h-12 rounded-full bg-slate-800/80 hover:bg-white hover:text-black text-white flex items-center justify-center transition-colors"
           >
-            <ChevronRight size={28} />
+            <ChevronRight className="w-7 h-7" />
           </button>
-
-          {/* ==================================================
-              MODAL CONTENT
-          ================================================== */}
 
           <div
-            className="
-              flex
-              max-h-full
-              w-full
-              max-w-[1200px]
-              flex-col
-              items-center
-              justify-center
-
-              overflow-hidden
-            "
+            className="max-w-4xl w-full max-h-[85vh] flex flex-col items-center justify-center space-y-4"
+            onClick={(e) => e.stopPropagation()}
           >
-            {/* ================================================
-                MODAL IMAGE
-            ================================================= */}
-
             <img
-              src={galleryItems[selectedIndex].image}
-              alt={galleryItems[selectedIndex].title}
-              className="
-                block
-
-                max-h-[78vh]
-                w-auto
-                max-w-[calc(100vw-80px)]
-
-                object-contain
-
-                sm:max-w-[calc(100vw-120px)]
-
-                md:max-h-[80vh]
-              "
+              src={primaryGalleryItems[selectedIndex].image}
+              alt={primaryGalleryItems[selectedIndex].title}
+              className="max-h-[72vh] max-w-full object-contain rounded-xl shadow-2xl border border-slate-800"
             />
 
-            {/* ================================================
-                MODAL TITLE
-            ================================================= */}
-
-            <div
-              className="
-                mt-4
-                max-w-[90%]
-
-                text-center
-
-                text-[16px]
-                font-semibold
-                leading-[1.4]
-
-                text-white
-
-                sm:text-[18px]
-
-                md:text-[20px]
-              "
-            >
-              {galleryItems[selectedIndex].title}
+            <div className="text-center space-y-1">
+              <span className="px-3 py-1 rounded-md bg-red-600 text-white text-xs font-extrabold uppercase tracking-wider">
+                {primaryGalleryItems[selectedIndex].badge}
+              </span>
+              <h3 className="text-xl sm:text-2xl font-bold text-white">
+                {primaryGalleryItems[selectedIndex].title}
+              </h3>
+              <p className="text-xs text-slate-400">
+                {primaryGalleryItems[selectedIndex].subtitle} | {selectedIndex + 1} of {primaryGalleryItems.length}
+              </p>
             </div>
 
-            {/* ================================================
-                IMAGE COUNTER
-            ================================================= */}
-
-            <div
-              className="
-                mt-2
-                text-center
-                text-[13px]
-                text-white/70
-              "
+            <button
+              onClick={() => {
+                const title = primaryGalleryItems[selectedIndex].title;
+                closeModal();
+                if (onOpenQuote) onOpenQuote(title);
+              }}
+              className="px-6 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs shadow-lg shadow-red-600/30 transition-all flex items-center gap-2"
             >
-              {selectedIndex + 1} / {galleryItems.length}
-            </div>
+              <span>Get Free Quote For This Service</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
           </div>
         </div>
       )}
-    </>
+    </section>
   );
 }
