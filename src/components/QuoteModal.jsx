@@ -18,21 +18,52 @@ export default function QuoteModal({ isOpen, onClose, prefilledService = "" }) {
     }
   }, [prefilledService]);
 
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleKey = (e) => {
+      if (e.key === "Escape") onClose();
+    };
+
+    window.addEventListener("keydown", handleKey);
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      window.removeEventListener("keydown", handleKey);
+      document.body.style.overflow = "";
+    };
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!formData.name || !formData.phone) return;
+
+    // Formatted WhatsApp message payload
+    const text = `*INSTANT QUOTE REQUEST - ROY ENTERPRISE*
+----------------------------------------
+👤 *Customer Name:* ${formData.name}
+📞 *Phone Number:* ${formData.phone}
+🛠️ *Service Required:* ${formData.service || "General Inquiry"}
+📍 *Project Location:* ${formData.location || "Not Specified"}
+📝 *Project Details:* ${formData.message || "No additional details provided"}
+----------------------------------------
+_Submitted via Roy Enterprise Instant Quote Drawer_`;
+
+    const whatsappUrl = `https://wa.me/917278077092?text=${encodeURIComponent(text)}`;
+    window.open(whatsappUrl, "_blank");
+
     setSubmitted(true);
   };
 
   return (
     <div
-      className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4"
+      className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-y-auto"
       onClick={onClose}
     >
       <div
-        className="bg-slate-900 border border-slate-800 rounded-3xl max-w-lg w-full p-6 sm:p-8 text-white shadow-2xl relative animate-in zoom-in-95 duration-200"
+        className="bg-slate-900 border border-slate-800 rounded-3xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 text-white shadow-2xl relative animate-in zoom-in-95 duration-200 my-auto"
         onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -80,7 +111,7 @@ export default function QuoteModal({ isOpen, onClose, prefilledService = "" }) {
                 required
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                placeholder="e.g. Sujit Purkait"
+                placeholder="e.g. Suman Bar"
                 className="w-full px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white text-sm focus:outline-none focus:border-red-500"
               />
             </div>

@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Wrench, ArrowRight, ShieldCheck, Check, Sparkles, Maximize2 } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Wrench, ArrowRight, ShieldCheck, Check, Sparkles, Maximize2, X } from "lucide-react";
 
 import imgi_2 from "../assets/imgi_2.jpg";
 import imgi_3 from "../assets/imgi_3.jpg";
@@ -120,6 +120,22 @@ export const servicesData = [
 export default function Services({ onSelectService, onOpenQuote }) {
   const [selectedService, setSelectedService] = useState(null);
 
+  useEffect(() => {
+    if (!selectedService) return;
+
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") setSelectedService(null);
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "";
+    };
+  }, [selectedService]);
+
   return (
     <section id="services" className="py-20 bg-slate-50 relative overflow-hidden">
       {/* Background Decorative Pattern */}
@@ -154,18 +170,17 @@ export default function Services({ onSelectService, onOpenQuote }) {
               key={service.id}
               className="group bg-white rounded-2xl border border-slate-200/80 shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col overflow-hidden hover:-translate-y-1.5"
             >
-              {/* Card Image */}
-              <div className="relative h-56 overflow-hidden bg-slate-100">
+              {/* Card Image - Full Unobstructed View */}
+              <div className="relative h-56 sm:h-60 overflow-hidden bg-slate-100">
                 <img
                   src={service.image}
                   alt={service.title}
                   loading="lazy"
                   className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent opacity-80 group-hover:opacity-60 transition-opacity" />
 
                 {/* Badge Tag */}
-                <div className="absolute top-3 left-3 bg-red-600 text-white text-[11px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-md shadow-md">
+                <div className="absolute top-3 left-3 bg-red-600 text-white text-[11px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-md shadow-md z-10">
                   {service.tag}
                 </div>
 
@@ -174,26 +189,25 @@ export default function Services({ onSelectService, onOpenQuote }) {
                   type="button"
                   onClick={() => setSelectedService(service)}
                   aria-label={`Inspect ${service.title}`}
-                  className="absolute top-3 right-3 w-9 h-9 rounded-lg bg-slate-900/80 text-white flex items-center justify-center backdrop-blur-sm opacity-0 group-hover:opacity-100 hover:bg-red-600 transition-all shadow-md cursor-pointer"
+                  className="absolute top-3 right-3 w-9 h-9 rounded-lg bg-slate-900/80 text-white flex items-center justify-center backdrop-blur-sm opacity-0 group-hover:opacity-100 hover:bg-red-600 transition-all shadow-md cursor-pointer z-10"
                 >
                   <Maximize2 className="w-4 h-4" />
                 </button>
-
-                <div className="absolute bottom-3 left-4 right-4 text-white">
-                  <span className="text-xs text-red-300 font-semibold uppercase tracking-wider block">
-                    {service.subtitle}
-                  </span>
-                  <h3 className="font-cinzel text-xl font-bold leading-snug drop-shadow-sm uppercase">
-                    {service.title}
-                  </h3>
-                </div>
               </div>
 
-              {/* Card Body */}
+              {/* Card Body - Content Written Outside the Image */}
               <div className="p-6 flex-1 flex flex-col justify-between space-y-5">
-                <p className="font-lora text-slate-600 text-sm leading-relaxed line-clamp-3">
-                  {service.description}
-                </p>
+                <div>
+                  <span className="text-xs text-red-600 font-extrabold uppercase tracking-wider block mb-1">
+                    {service.subtitle}
+                  </span>
+                  <h3 className="font-cinzel text-xl font-bold text-slate-900 leading-snug group-hover:text-red-600 transition-colors uppercase">
+                    {service.title}
+                  </h3>
+                  <p className="font-lora text-slate-600 text-sm leading-relaxed line-clamp-3 mt-3">
+                    {service.description}
+                  </p>
+                </div>
 
                 {/* Feature Bullet points */}
                 <div className="space-y-2 pt-2 border-t border-slate-100">
@@ -208,6 +222,7 @@ export default function Services({ onSelectService, onOpenQuote }) {
                 {/* Actions */}
                 <div className="pt-2 flex items-center gap-3">
                   <button
+                    type="button"
                     onClick={() => {
                       if (onSelectService) onSelectService(service);
                       else if (onOpenQuote) onOpenQuote(service.title);
@@ -219,8 +234,9 @@ export default function Services({ onSelectService, onOpenQuote }) {
                   </button>
 
                   <button
+                    type="button"
                     onClick={() => setSelectedService(service)}
-                    className="py-2.5 px-3 rounded-xl border border-slate-200 hover:border-slate-300 text-slate-700 font-semibold text-xs hover:bg-slate-100 transition-colors cursor-pointer"
+                    className="py-2.5 px-4 rounded-xl border border-slate-200 hover:border-slate-300 text-slate-700 font-bold text-xs hover:bg-slate-100 transition-colors cursor-pointer"
                   >
                     Details
                   </button>
@@ -234,67 +250,89 @@ export default function Services({ onSelectService, onOpenQuote }) {
       {/* Service Detail Modal */}
       {selectedService && (
         <div
-          className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-y-auto"
           onClick={() => setSelectedService(null)}
         >
           <div
-            className="bg-white rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl border border-slate-200 animate-in zoom-in-95 duration-200"
+            className="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] flex flex-col overflow-hidden shadow-2xl border border-slate-200 animate-in zoom-in-95 duration-200 my-auto relative"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="relative h-64 sm:h-72">
-              <img
-                src={selectedService.image}
-                alt={selectedService.title}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent" />
-              <button
-                onClick={() => setSelectedService(null)}
-                className="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/60 text-white hover:bg-red-600 flex items-center justify-center transition-colors font-bold text-lg"
-              >
-                ✕
-              </button>
-              <div className="absolute bottom-6 left-6 right-6 text-white">
-                <span className="px-3 py-1 rounded-md bg-red-600 text-white text-xs font-bold uppercase tracking-wider inline-block mb-2">
-                  {selectedService.tag}
-                </span>
-                <h3 className="text-2xl sm:text-3xl font-black">{selectedService.title}</h3>
-                <p className="text-slate-300 text-xs sm:text-sm">{selectedService.subtitle}</p>
-              </div>
-            </div>
+            {/* Top Close Button (Fixed over image) */}
+            <button
+              type="button"
+              onClick={() => setSelectedService(null)}
+              aria-label="Close details modal"
+              className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-slate-900/80 hover:bg-red-600 text-white flex items-center justify-center transition-colors shadow-lg cursor-pointer backdrop-blur-sm"
+            >
+              <X className="w-5 h-5" />
+            </button>
 
-            <div className="p-6 sm:p-8 space-y-6">
-              <div>
-                <h4 className="text-xs font-extrabold uppercase tracking-wider text-slate-400 mb-2">Overview</h4>
-                <p className="text-slate-700 text-sm sm:text-base leading-relaxed">{selectedService.description}</p>
-              </div>
-
-              <div>
-                <h4 className="text-xs font-extrabold uppercase tracking-wider text-slate-400 mb-3">Specifications & Key Highlights</h4>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {selectedService.features.map((feat, i) => (
-                    <div key={i} className="flex items-start gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-100">
-                      <ShieldCheck className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />
-                      <span className="text-xs sm:text-sm font-semibold text-slate-800">{feat}</span>
-                    </div>
-                  ))}
+            {/* Scrollable Container */}
+            <div className="overflow-y-auto flex-1 flex flex-col">
+              {/* Image Banner Header */}
+              <div className="relative h-48 sm:h-64 w-full shrink-0 bg-slate-950 overflow-hidden">
+                <img
+                  src={selectedService.image}
+                  alt={selectedService.title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
+                <div className="absolute bottom-4 left-6 right-6 text-white">
+                  <span className="px-3 py-1 rounded-md bg-red-600 text-white text-[10px] font-extrabold uppercase tracking-wider inline-block mb-1.5 shadow-sm">
+                    {selectedService.tag}
+                  </span>
+                  <h3 className="font-cinzel text-xl sm:text-2xl lg:text-3xl font-black text-white uppercase drop-shadow-sm">
+                    {selectedService.title}
+                  </h3>
+                  <p className="font-lora text-slate-300 text-xs sm:text-sm mt-0.5">
+                    {selectedService.subtitle}
+                  </p>
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-slate-100 flex items-center justify-end gap-3">
+              {/* Body Content */}
+              <div className="p-6 sm:p-8 space-y-6 flex-1">
+                <div>
+                  <h4 className="font-cinzel text-xs font-black uppercase tracking-wider text-slate-400 mb-2">
+                    Overview & Scope
+                  </h4>
+                  <p className="font-lora text-slate-700 text-sm sm:text-base leading-relaxed">
+                    {selectedService.description}
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="font-cinzel text-xs font-black uppercase tracking-wider text-slate-400 mb-3">
+                    Specifications & Key Highlights
+                  </h4>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {selectedService.features.map((feat, i) => (
+                      <div key={i} className="flex items-start gap-2.5 p-3.5 rounded-2xl bg-slate-50 border border-slate-100">
+                        <ShieldCheck className="w-4.5 h-4.5 text-red-600 shrink-0 mt-0.5" />
+                        <span className="font-lora text-xs sm:text-sm font-semibold text-slate-800">{feat}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Fixed Bottom Actions Footer */}
+              <div className="p-4 sm:px-8 sm:py-5 bg-slate-50 border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-3 shrink-0">
                 <button
+                  type="button"
                   onClick={() => setSelectedService(null)}
-                  className="px-5 py-2.5 rounded-xl border border-slate-200 text-slate-700 font-bold text-xs hover:bg-slate-100 transition-colors"
+                  className="w-full sm:w-auto px-6 py-2.5 rounded-xl border border-slate-300 text-slate-700 font-bold text-xs uppercase tracking-wider hover:bg-slate-100 transition-colors cursor-pointer"
                 >
                   Close
                 </button>
                 <button
+                  type="button"
                   onClick={() => {
                     const title = selectedService.title;
                     setSelectedService(null);
                     if (onOpenQuote) onOpenQuote(title);
                   }}
-                  className="px-6 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs shadow-lg shadow-red-600/30 transition-all flex items-center gap-2"
+                  className="w-full sm:w-auto px-7 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-black text-xs uppercase tracking-wider shadow-lg shadow-red-600/30 transition-all flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <span>Request Free Quote</span>
                   <ArrowRight className="w-4 h-4" />

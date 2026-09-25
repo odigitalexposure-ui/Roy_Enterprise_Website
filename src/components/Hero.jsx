@@ -62,6 +62,86 @@ export default function Hero({ onOpenQuote }) {
 
   const currentHero = heroImages[activeImageIndex];
 
+  const renderVisualShowcase = () => (
+    <div className="relative mx-auto max-w-md lg:max-w-none">
+      {/* Main White Elevated Frame */}
+      <div className="relative rounded-3xl overflow-hidden bg-white border border-slate-200/90 p-3 shadow-2xl shadow-slate-300/70 group">
+        <div className="relative rounded-2xl overflow-hidden bg-slate-950 aspect-[4/3] sm:aspect-[1.15/1]">
+          <img
+            key={currentHero.src}
+            src={currentHero.src}
+            alt={currentHero.title}
+            className="w-full h-full object-cover object-center group-hover:scale-105 transition-all duration-700 ease-in-out animate-in fade-in duration-500"
+          />
+
+          {/* Gradient Image Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent pointer-events-none" />
+
+          {/* Image Navigation Arrows */}
+          <button
+            type="button"
+            onClick={() => setActiveImageIndex((prev) => (prev === 0 ? heroImages.length - 1 : prev - 1))}
+            className="absolute left-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-slate-900/80 text-white flex items-center justify-center hover:bg-red-600 transition-colors backdrop-blur-sm shadow-md z-10 cursor-pointer"
+            aria-label="Previous project photo"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setActiveImageIndex((prev) => (prev === heroImages.length - 1 ? 0 : prev + 1))}
+            className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-slate-900/80 text-white flex items-center justify-center hover:bg-red-600 transition-colors backdrop-blur-sm shadow-md z-10 cursor-pointer"
+            aria-label="Next project photo"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+        </div>
+
+        {/* Floating Light Glass Badge (Top Right - Hidden on Mobile) */}
+        <div className="hidden sm:flex absolute top-6 right-6 bg-white/95 backdrop-blur-md border border-slate-200 rounded-2xl p-2.5 sm:p-3 shadow-xl items-center gap-2.5 sm:gap-3 z-10">
+          <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-red-100 text-red-600 flex items-center justify-center font-bold">
+            <Award className="w-4 h-4 sm:w-5 sm:h-5" />
+          </div>
+          <div>
+            <div className="text-[10px] sm:text-[11px] text-slate-500 font-semibold">Quality Rating</div>
+            <div className="text-xs sm:text-sm font-extrabold text-slate-900">100% Certified</div>
+          </div>
+        </div>
+
+        {/* Floating Light Glass Badge (Bottom Left - Hidden on Mobile) */}
+        <div className="hidden sm:flex absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-md border border-slate-200 rounded-2xl p-3 sm:p-3.5 shadow-xl items-center justify-between z-10">
+          <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
+              <Building2 className="w-4 h-4 sm:w-5 sm:h-5" />
+            </div>
+            <div className="min-w-0">
+              <div className="text-xs font-black text-slate-900 truncate">{currentHero.title}</div>
+              <div className="text-[10px] sm:text-[11px] text-slate-500 font-medium truncate">{currentHero.tag}</div>
+            </div>
+          </div>
+          <span className="px-2 sm:px-2.5 py-1 rounded-md bg-emerald-100 text-emerald-700 text-[9px] sm:text-[10px] font-extrabold uppercase shrink-0 ml-1">
+            Verified
+          </span>
+        </div>
+      </div>
+
+      {/* 2.5s Timer Progress Dots */}
+      <div className="flex items-center justify-center gap-2 mt-4">
+        {heroImages.map((_, i) => (
+          <button
+            key={i}
+            type="button"
+            onClick={() => setActiveImageIndex(i)}
+            className={`h-2.5 rounded-full transition-all duration-500 cursor-pointer ${
+              activeImageIndex === i ? "w-8 bg-red-600" : "w-2.5 bg-slate-300 hover:bg-slate-400"
+            }`}
+            aria-label={`View photo ${i + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+
   return (
     <section id="home" className="relative pt-28 lg:pt-36 pb-16 lg:pb-24 bg-gradient-to-b from-slate-50 via-white to-slate-100/80 text-slate-900 overflow-hidden">
       {/* Background Subtle Architectural Pattern */}
@@ -78,7 +158,7 @@ export default function Hero({ onOpenQuote }) {
             {/* Top Sub-heading & Cursive Script Typography */}
             <div className="space-y-1">
               <span className="text-amber-600 font-bold tracking-[0.25em] text-xs uppercase block">
-                ABOUT ROY ENTERPRISE
+                ROY ENTERPRISE
               </span>
               <span className="font-script text-3xl sm:text-4xl text-amber-600 block">
                 Crafted With Passion
@@ -92,6 +172,11 @@ export default function Hero({ onOpenQuote }) {
                 Roof Sheds & Steel Structures
               </span>
             </h1>
+
+            {/* MOBILE ONLY: Hero Image Slideshow directly under the main heading */}
+            <div className="block lg:hidden my-6">
+              {renderVisualShowcase()}
+            </div>
 
             {/* Description */}
             <p className="font-lora text-slate-700 text-base sm:text-lg lg:text-xl leading-relaxed max-w-2xl mx-auto lg:mx-0">
@@ -114,6 +199,7 @@ export default function Hero({ onOpenQuote }) {
             {/* CTA Action Bar */}
             <div className="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
               <button
+                type="button"
                 onClick={onOpenQuote}
                 className="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-red-600 via-red-600 to-red-700 text-white font-extrabold text-base shadow-xl shadow-red-600/30 hover:shadow-red-600/50 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2.5 group cursor-pointer"
               >
@@ -147,85 +233,9 @@ export default function Hero({ onOpenQuote }) {
             </div>
           </div>
 
-          {/* Right Hero Visual Showcase Card with 2.5s Auto-Slideshow */}
-          <div className="lg:col-span-5 relative">
-            <div className="relative mx-auto max-w-md lg:max-w-none">
-              
-              {/* Main White Elevated Frame */}
-              <div className="relative rounded-3xl overflow-hidden bg-white border border-slate-200/90 p-3 shadow-2xl shadow-slate-300/70 group">
-                <div className="relative rounded-2xl overflow-hidden bg-slate-950 aspect-[4/3] sm:aspect-[1.15/1]">
-                  <img
-                    key={currentHero.src}
-                    src={currentHero.src}
-                    alt={currentHero.title}
-                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-all duration-700 ease-in-out animate-in fade-in duration-500"
-                  />
-
-                  {/* Gradient Image Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent pointer-events-none" />
-
-                  {/* Image Navigation Arrows */}
-                  <button
-                    onClick={() => setActiveImageIndex((prev) => (prev === 0 ? heroImages.length - 1 : prev - 1))}
-                    className="absolute left-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-slate-900/80 text-white flex items-center justify-center hover:bg-red-600 transition-colors backdrop-blur-sm shadow-md"
-                    aria-label="Previous project photo"
-                  >
-                    <ChevronLeft className="w-5 h-5" />
-                  </button>
-
-                  <button
-                    onClick={() => setActiveImageIndex((prev) => (prev === heroImages.length - 1 ? 0 : prev + 1))}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-slate-900/80 text-white flex items-center justify-center hover:bg-red-600 transition-colors backdrop-blur-sm shadow-md"
-                    aria-label="Next project photo"
-                  >
-                    <ChevronRight className="w-5 h-5" />
-                  </button>
-                </div>
-
-                {/* Floating Light Glass Badge (Top Right) */}
-                <div className="absolute top-6 right-6 bg-white/95 backdrop-blur-md border border-slate-200 rounded-2xl p-3 shadow-xl flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-red-100 text-red-600 flex items-center justify-center font-bold">
-                    <Award className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <div className="text-[11px] text-slate-500 font-semibold">Quality Rating</div>
-                    <div className="text-sm font-extrabold text-slate-900">100% Certified</div>
-                  </div>
-                </div>
-
-                {/* Floating Light Glass Badge (Bottom Left) */}
-                <div className="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-md border border-slate-200 rounded-2xl p-3.5 shadow-xl flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
-                      <Building2 className="w-5 h-5" />
-                    </div>
-                    <div className="min-w-0">
-                      <div className="text-xs font-black text-slate-900 truncate">{currentHero.title}</div>
-                      <div className="text-[11px] text-slate-500 font-medium truncate">{currentHero.tag}</div>
-                    </div>
-                  </div>
-                  <span className="px-2.5 py-1 rounded-md bg-emerald-100 text-emerald-700 text-[10px] font-extrabold uppercase shrink-0">
-                    Verified
-                  </span>
-                </div>
-
-              </div>
-
-              {/* 2.5s Timer Progress Dots */}
-              <div className="flex items-center justify-center gap-2 mt-4">
-                {heroImages.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setActiveImageIndex(i)}
-                    className={`h-2.5 rounded-full transition-all duration-500 ${
-                      activeImageIndex === i ? "w-8 bg-red-600" : "w-2.5 bg-slate-300 hover:bg-slate-400"
-                    }`}
-                    aria-label={`View photo ${i + 1}`}
-                  />
-                ))}
-              </div>
-
-            </div>
+          {/* DESKTOP ONLY: Right Hero Visual Showcase Card */}
+          <div className="hidden lg:block lg:col-span-5 relative">
+            {renderVisualShowcase()}
           </div>
 
         </div>

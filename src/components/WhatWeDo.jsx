@@ -51,8 +51,8 @@ export default function WhatWeDo({ onOpenQuote }) {
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent pointer-events-none" />
               </div>
 
-              {/* Glass Info Card Overlay */}
-              <div className="absolute bottom-6 left-6 right-6 text-white p-5 rounded-2xl bg-slate-900/90 backdrop-blur-md border border-slate-700/80 shadow-xl">
+              {/* Glass Info Card Overlay (Desktop Only, Hidden on Mobile for clean full image view) */}
+              <div className="hidden sm:block absolute bottom-6 left-6 right-6 text-white p-5 rounded-2xl bg-slate-900/90 backdrop-blur-md border border-slate-700/80 shadow-xl">
                 <div className="flex items-center justify-between">
                   <div>
                     <h4 className="font-cinzel text-lg font-black text-white uppercase">Full-Spectrum Roofing Solutions</h4>

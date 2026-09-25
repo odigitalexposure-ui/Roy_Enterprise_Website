@@ -25,6 +25,21 @@ export default function Contact({ prefilledService = "" }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!formData.name || !formData.phone) return;
+
+    // Formatted WhatsApp message payload
+    const text = `*NEW INQUIRY - ROY ENTERPRISE*
+----------------------------------------
+👤 *Customer Name:* ${formData.name}
+📞 *Phone Number:* ${formData.phone}
+🛠️ *Service Required:* ${formData.service || "General Roofing Inquiry"}
+📍 *Project Location:* ${formData.location || "Not Specified"}
+📝 *Project Details:* ${formData.message || "No additional details provided"}
+----------------------------------------
+_Submitted via Roy Enterprise Website_`;
+
+    const whatsappUrl = `https://wa.me/917278077092?text=${encodeURIComponent(text)}`;
+    window.open(whatsappUrl, "_blank");
+
     setSubmitted(true);
   };
 
@@ -34,7 +49,7 @@ export default function Contact({ prefilledService = "" }) {
       <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#38bdf8_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-extrabold uppercase tracking-wider">
@@ -57,7 +72,7 @@ export default function Contact({ prefilledService = "" }) {
 
         {/* Contact Split: Form + Info Cards + Google Map */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16">
-          
+
           {/* Left Inquiry Form */}
           <div className="lg:col-span-7 bg-slate-900/90 border border-slate-800 rounded-3xl p-8 sm:p-10 shadow-2xl space-y-6">
             <h3 className="font-cinzel text-xl sm:text-2xl font-black text-white flex items-center gap-2 uppercase">
@@ -92,7 +107,7 @@ export default function Contact({ prefilledService = "" }) {
                       required
                       value={formData.name}
                       onChange={handleChange}
-                      placeholder="e.g. Sujit Purkait"
+                      placeholder="e.g. Suman Bar"
                       className="w-full px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white text-sm focus:outline-none focus:border-red-500 transition-colors"
                     />
                   </div>
@@ -168,7 +183,7 @@ export default function Contact({ prefilledService = "" }) {
 
           {/* Right Info Cards & Map */}
           <div className="lg:col-span-5 space-y-6">
-            
+
             {/* Quick Contact Cards */}
             <div className="bg-slate-900/90 border border-slate-800 rounded-3xl p-6 space-y-4">
               <h4 className="text-xs font-extrabold uppercase tracking-wider text-slate-400">Direct Office Contacts</h4>
@@ -254,11 +269,7 @@ export default function Contact({ prefilledService = "" }) {
         {/* Footer Credit & Copyright */}
         <div className="pt-8 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400 text-center sm:text-left">
           <div>
-            © {new Date().getFullYear()} <strong className="text-white">Roy Enterprise</strong>. All Rights Reserved. Master Roofing & Steel Fabrication.
-          </div>
-
-          <div className="flex items-center gap-2">
-            <span>Website designed & developed by</span>
+            © {new Date().getFullYear()} <strong className="text-white">Roy Enterprise</strong>.Website designed & developed by
             <a
               href="https://www.teamdeoskolkata.in/"
               target="_blank"
@@ -269,6 +280,8 @@ export default function Contact({ prefilledService = "" }) {
               <ExternalLink className="w-3 h-3 text-red-400" />
             </a>
           </div>
+
+
         </div>
 
       </div>
