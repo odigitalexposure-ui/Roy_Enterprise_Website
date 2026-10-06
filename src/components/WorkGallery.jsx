@@ -19,6 +19,16 @@ export const workGalleryItems = [
   { image: "/image/image15.jpeg", title: "Heavy Duty Factory Truss Installation", category: "Warehouses", location: "Kalyani Highway" },
   { image: "/image/image16.jpeg", title: "Residential Car Parking Roof Shed", category: "Roof Sheds", location: "Tollygunge" },
   { image: "/image/image17.jpeg", title: "Structural Steel Railing & Canopy Fixing", category: "Staircase & Glazing", location: "Behala" },
+  { image: "/image/12mm GLASS ROOF.jpeg", title: "12mm Toughened Glass Roof Canopy", category: "Staircase & Glazing", location: "Alipore, Kolkata" },
+  { image: "/image/All Types Of Roof Sheds.jpeg", title: "Custom Curved Galvalume Roof Shed", category: "Roof Sheds", location: "Park Street, Kolkata" },
+  { image: "/image/ALUMINIUM SLIDING WITH LOUVER FIXED.jpeg", title: "Aluminium Sliding Window with Fixed Louver", category: "Staircase & Glazing", location: "Salt Lake Sector V, Kolkata" },
+  { image: "/image/GLASS PARTITION.jpeg", title: "Architectural Interior Glass Partition", category: "Staircase & Glazing", location: "Camac Street, Kolkata" },
+  { image: "/image/HONEYCOMB FIXING.jpeg", title: "Aluminum Honeycomb Structural Cladding", category: "Steel Framing", location: "Kashipur, Kolkata" },
+  { image: "/image/INVISIBLE GRILL.jpeg", title: "Stainless Steel Invisible Balcony Safety Grill", category: "Staircase & Glazing", location: "EM Bypass, Kolkata" },
+  { image: "/image/POLYCARBON CORUGATED SHEET.jpeg", title: "Polycarbonate Corrugated Daylight Roofing", category: "Roof Sheds", location: "Howrah Industrial Belt" },
+  { image: "/image/POLYCARBON MALTIWALL SHEET.jpeg", title: "Polycarbonate Multiwall Thermal Roofing Sheet", category: "Roof Sheds", location: "Kasba, Kolkata" },
+  { image: "/image/SLIDING MOSQUITO NET.jpeg", title: "Heavy Duty Sliding Mosquito Net Window System", category: "Staircase & Glazing", location: "Ballygunge, Kolkata" },
+  { image: "/image/UPVC Door And Window.jpeg", title: "Precision Engineered UPVC Door & Window System", category: "Staircase & Glazing", location: "New Town Action Area 1, Kolkata" },
 ];
 
 const categories = ["All Projects", "Roof Sheds", "Steel Framing", "Warehouses", "Staircase & Glazing"];

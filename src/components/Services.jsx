@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Wrench, ArrowRight, ShieldCheck, Check, Sparkles, Maximize2, X } from "lucide-react";
 
+import imgi_1 from "../assets/imgi_1_WhatsApp-Image-2024-01-19-at-10.45.00-AM-1-e1753955830804.jpg";
 import imgi_2 from "../assets/imgi_2.jpg";
 import imgi_3 from "../assets/imgi_3.jpg";
 import imgi_4 from "../assets/imgi_4.jpg";
@@ -14,7 +15,7 @@ export const servicesData = [
     id: "roof-shed",
     title: "All Types Of Roof Sheds",
     subtitle: "Industrial, Commercial & Residential Sheds",
-    image: imgi_2,
+    image: imgi_1,
     tag: "Most Popular",
     description:
       "Expert fabrication and installation of curved, sloped, and flat roof sheds using high-durability Tata Galvalume sheets and GI structural tubing. Designed for maximum wind resistance, thermal efficiency, and zero leakage.",
@@ -29,7 +30,7 @@ export const servicesData = [
     id: "upvc-doors-windows",
     title: "UPVC, Aluminium Doors & Windows",
     subtitle: "Modern Architectural Glazing & Sliding Systems",
-    image: imgi_3,
+    image: imgi_2,
     tag: "High Demand",
     description:
       "Premium precision-engineered UPVC and Aluminium window & door systems offering exceptional soundproofing, thermal insulation, and dust resistance for modern homes and commercial complexes.",
@@ -44,7 +45,7 @@ export const servicesData = [
     id: "false-ceiling",
     title: "Gypsum & Armstrong False Ceiling Work",
     subtitle: "Acoustic & Decorative Ceiling Systems",
-    image: imgi_4,
+    image: imgi_3,
     tag: "Interior Excellence",
     description:
       "Seamless gypsum board false ceiling and modular Armstrong drop ceiling solutions for offices, showrooms, and luxury residences. Enhances acoustics, conceals wiring, and integrates modern LED lighting.",
@@ -57,24 +58,24 @@ export const servicesData = [
   },
   {
     id: "toughened-glass",
-    title: "Toughened Glass Fixing & Canopies",
-    subtitle: "Architectural Glass Facades & Skylights",
-    image: imgi_5,
+    title: "Toughened Glass with Glass Film Fixing",
+    subtitle: "Architectural Glass Facades, Canopies & Film Fixing",
+    image: imgi_4,
     tag: "Premium Safety",
     description:
-      "Heavy-duty toughened safety glass installations including glass canopies, entrance facades, balcony railings, and daylight skylights with stainless steel spider fittings and structural silicone.",
+      "Heavy-duty toughened safety glass installations with decorative & solar heat control glass film fixing, including glass canopies, entrance facades, balcony railings, and daylight skylights with stainless steel spider fittings.",
     features: [
       "8mm to 12mm Heat-Toughened Safety Glass",
+      "Decorative, Frosted & Solar Control Glass Film Fixing",
       "SS 304 Grade Hardware & Spider Fittings",
       "UV Protective & Anti-Shatter Laminated Glass",
-      "Sleek Frameless & Semi-Frameless Aesthetic",
     ],
   },
   {
     id: "complete-warehouse",
     title: "Complete Warehouse Construction",
     subtitle: "Turnkey Industrial Infrastructure",
-    image: imgi_6,
+    image: imgi_5,
     tag: "Turnkey Solutions",
     description:
       "End-to-end industrial warehouse design, structural steel erection, side wall cladding, ventilation systems, and heavy-duty roofing built to withstand extreme weather conditions and heavy loads.",
@@ -89,7 +90,7 @@ export const servicesData = [
     id: "heavy-steel-structures",
     title: "Heavy Steel Structure Engineering",
     subtitle: "Industrial Trusses, Girders & Framing",
-    image: imgi_7,
+    image: imgi_6,
     tag: "Heavy Duty",
     description:
       "Precision structural steel fabrication including heavy industrial girders, columns, roof trusses, and factory mezzanine floors built using tested steel channels, angles, and ISMB sections.",
@@ -104,7 +105,7 @@ export const servicesData = [
     id: "tin-sheeting",
     title: "Erection & Tin Sheeting Services",
     subtitle: "Roofing Sheet Replacement & Wall Cladding",
-    image: imgi_8,
+    image: imgi_7,
     tag: "Fast Turnaround",
     description:
       "Rapid roof sheeting replacement, tin sheet erection, wall cladding, and leak repair services for existing factories, workshops, garages, and residential terrace extensions.",

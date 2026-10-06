@@ -106,7 +106,7 @@ export default function Gallery({ onOpenQuote }) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {primaryGalleryItems.map((item, index) => (
             <div
-              key={`${item.title}-${index}`}
+              key={`${item.badge}-${index}`}
               onClick={() => openModal(index)}
               className="group relative bg-slate-800 rounded-3xl overflow-hidden border border-slate-700/80 shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer flex flex-col justify-between"
             >
@@ -114,37 +114,24 @@ export default function Gallery({ onOpenQuote }) {
               <div className="relative h-64 overflow-hidden bg-slate-950">
                 <img
                   src={item.image}
-                  alt={item.title}
+                  alt={item.badge}
                   loading={index === 0 ? "eager" : "lazy"}
                   className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80 group-hover:opacity-60 transition-opacity" />
 
-                <span className="absolute top-4 left-4 bg-red-600 text-white text-[10px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-md shadow-md">
-                  {item.badge}
-                </span>
-
                 <button
                   type="button"
-                  aria-label={`Open modal for ${item.title}`}
+                  aria-label={`Open modal for project ${index + 1}`}
                   className="absolute top-4 right-4 w-9 h-9 rounded-lg bg-slate-900/80 text-white flex items-center justify-center backdrop-blur-sm opacity-0 group-hover:opacity-100 hover:bg-red-600 transition-all shadow-md"
                 >
                   <Maximize2 className="w-4 h-4" />
                 </button>
               </div>
 
-              {/* Title & Action */}
-              <div className="p-6 space-y-4">
-                <div>
-                  <span className="text-xs text-red-400 font-semibold uppercase tracking-wider block">
-                    {item.subtitle}
-                  </span>
-                  <h3 className="font-cinzel text-xl font-bold text-white leading-snug group-hover:text-red-400 transition-colors uppercase">
-                    {item.title}
-                  </h3>
-                </div>
-
-                <div className="pt-2 border-t border-slate-700/60 flex items-center justify-between text-xs text-slate-300 font-semibold">
+              {/* Action Bar without card titles */}
+              <div className="p-4 bg-slate-800">
+                <div className="flex items-center justify-between text-xs text-slate-300 font-semibold">
                   <span className="flex items-center gap-1 text-emerald-400">
                     ✓ Certified Installation
                   </span>
@@ -196,23 +183,16 @@ export default function Gallery({ onOpenQuote }) {
               className="max-h-[72vh] max-w-full object-contain rounded-xl shadow-2xl border border-slate-800"
             />
 
-            <div className="text-center space-y-1">
-              <span className="px-3 py-1 rounded-md bg-red-600 text-white text-xs font-extrabold uppercase tracking-wider">
-                {primaryGalleryItems[selectedIndex].badge}
-              </span>
-              <h3 className="text-xl sm:text-2xl font-bold text-white">
-                {primaryGalleryItems[selectedIndex].title}
-              </h3>
-              <p className="text-xs text-slate-400">
-                {primaryGalleryItems[selectedIndex].subtitle} | {selectedIndex + 1} of {primaryGalleryItems.length}
+            <div className="text-center">
+              <p className="text-xs font-semibold text-slate-400">
+                Photo {selectedIndex + 1} of {primaryGalleryItems.length}
               </p>
             </div>
 
             <button
               onClick={() => {
-                const title = primaryGalleryItems[selectedIndex].title;
                 closeModal();
-                if (onOpenQuote) onOpenQuote(title);
+                if (onOpenQuote) onOpenQuote("Service Showcase Quote");
               }}
               className="px-6 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs shadow-lg shadow-red-600/30 transition-all flex items-center gap-2"
             >
