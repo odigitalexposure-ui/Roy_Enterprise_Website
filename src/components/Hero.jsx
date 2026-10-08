@@ -71,6 +71,9 @@ export default function Hero({ onOpenQuote }) {
             key={currentHero.src}
             src={currentHero.src}
             alt={currentHero.title}
+            loading={activeImageIndex === 0 ? "eager" : "lazy"}
+            fetchPriority={activeImageIndex === 0 ? "high" : "low"}
+            decoding="async"
             className="w-full h-full object-cover object-center group-hover:scale-105 transition-all duration-700 ease-in-out animate-in fade-in duration-500"
           />
 

@@ -1,4 +1,4 @@
-import { Building2, CheckCircle2, ArrowRight } from "lucide-react";
+import { CheckCircle2, ArrowRight } from "lucide-react";
 import what_we_do from "../assets/imgi_74_WhatsApp-Image-2024-01-19-at-10.45.01-AM-1536x1152.jpg";
 
 export default function WhatWeDo({ onOpenQuote }) {

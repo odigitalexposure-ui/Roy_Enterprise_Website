@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { X, ChevronLeft, ChevronRight, Maximize2, ShieldCheck, ArrowRight, Sparkles } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, Maximize2, ArrowRight, Sparkles } from "lucide-react";
 
 export const primaryGalleryItems = [
   {
@@ -116,6 +116,7 @@ export default function Gallery({ onOpenQuote }) {
                   src={item.image}
                   alt={item.badge}
                   loading={index === 0 ? "eager" : "lazy"}
+                  decoding="async"
                   className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80 group-hover:opacity-60 transition-opacity" />
@@ -180,6 +181,8 @@ export default function Gallery({ onOpenQuote }) {
             <img
               src={primaryGalleryItems[selectedIndex].image}
               alt={primaryGalleryItems[selectedIndex].title}
+              loading="lazy"
+              decoding="async"
               className="max-h-[72vh] max-w-full object-contain rounded-xl shadow-2xl border border-slate-800"
             />
 

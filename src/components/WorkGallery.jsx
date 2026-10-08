@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { X, ChevronLeft, ChevronRight, Filter, Maximize2, Sparkles, ShieldCheck, ArrowRight, Grid } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, Maximize2, Sparkles, ArrowRight } from "lucide-react";
 
 export const workGalleryItems = [
   { image: "/image/image1.jpeg", title: "Industrial Roof Shed Erection", category: "Roof Sheds", location: "Barasat, Kolkata" },
@@ -128,7 +128,8 @@ export default function WorkGallery({ onOpenQuote }) {
               <img
                 src={item.image}
                 alt={item.title}
-                loading={index < 8 ? "eager" : "lazy"}
+                loading={index < 4 ? "eager" : "lazy"}
+                decoding="async"
                 className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"
               />
 
@@ -209,6 +210,8 @@ export default function WorkGallery({ onOpenQuote }) {
             <img
               src={filteredItems[selectedIndex].image}
               alt={filteredItems[selectedIndex].title}
+              loading="lazy"
+              decoding="async"
               className="max-h-[72vh] max-w-full object-contain rounded-xl shadow-2xl border border-slate-800"
             />
 

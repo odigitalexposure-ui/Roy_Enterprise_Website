@@ -1,4 +1,4 @@
-import { UserRound, Paintbrush, Banknote, BriefcaseBusiness, CheckCircle2, ShieldCheck, Award, Phone, ArrowRight, Sparkles } from "lucide-react";
+import { UserRound, Paintbrush, Banknote, BriefcaseBusiness, CheckCircle2, ShieldCheck, Award, Phone, ArrowRight } from "lucide-react";
 import howItWorksImg from "../assets/how_it_works.jpg";
 import architecturalImg from "../assets/imgi_47_imageye___-_imgi_101_pexels-photo-257636-1536x1024.jpg";
 
@@ -177,6 +177,8 @@ export default function HowItWorks({ onOpenQuote }) {
                 <img
                   src={howItWorksImg}
                   alt="Roy Enterprise Team Work"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-80 sm:h-96 object-cover object-center"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />

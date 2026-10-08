@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { X, Send, Phone, ShieldCheck, CheckCircle2 } from "lucide-react";
+import { X, Send, ShieldCheck } from "lucide-react";
 
 export default function QuoteModal({ isOpen, onClose, prefilledService = "" }) {
+  const [prevService, setPrevService] = useState(prefilledService);
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -10,13 +11,12 @@ export default function QuoteModal({ isOpen, onClose, prefilledService = "" }) {
     message: "",
   });
 
-  const [submitted, setSubmitted] = useState(false);
+  if (prefilledService !== prevService) {
+    setPrevService(prefilledService);
+    setFormData((prev) => ({ ...prev, service: prefilledService || "All Types Of Roof Sheds" }));
+  }
 
-  useEffect(() => {
-    if (prefilledService) {
-      setFormData((prev) => ({ ...prev, service: prefilledService }));
-    }
-  }, [prefilledService]);
+  const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
     if (!isOpen) return;

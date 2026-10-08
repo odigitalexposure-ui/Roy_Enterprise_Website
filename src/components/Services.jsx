@@ -1,21 +1,19 @@
 import { useState, useEffect } from "react";
-import { Wrench, ArrowRight, ShieldCheck, Check, Sparkles, Maximize2, X } from "lucide-react";
+import { Wrench, ArrowRight, ShieldCheck, Check, Maximize2, X } from "lucide-react";
 
-import imgi_1 from "../assets/imgi_1_WhatsApp-Image-2024-01-19-at-10.45.00-AM-1-e1753955830804.jpg";
-import imgi_2 from "../assets/imgi_2.jpg";
+import image_0 from "../assets/image_0.jpeg";
 import imgi_3 from "../assets/imgi_3.jpg";
 import imgi_4 from "../assets/imgi_4.jpg";
 import imgi_5 from "../assets/imgi_5.jpg";
 import imgi_6 from "../assets/imgi_6.jpg";
 import imgi_7 from "../assets/imgi_7.jpg";
-import imgi_8 from "../assets/imgi_8.jpg";
 
 export const servicesData = [
   {
     id: "roof-shed",
-    title: "All Types Of Roof Sheds",
+    title: "Roof Shed with Wpc Border Fixing",
     subtitle: "Industrial, Commercial & Residential Sheds",
-    image: imgi_1,
+    image: image_0,
     tag: "Most Popular",
     description:
       "Expert fabrication and installation of curved, sloped, and flat roof sheds using high-durability Tata Galvalume sheets and GI structural tubing. Designed for maximum wind resistance, thermal efficiency, and zero leakage.",
@@ -28,9 +26,9 @@ export const servicesData = [
   },
   {
     id: "upvc-doors-windows",
-    title: "UPVC, Aluminium Doors & Windows",
+    title: "UPVC Doors & Windows",
     subtitle: "Modern Architectural Glazing & Sliding Systems",
-    image: imgi_2,
+    image: "/image/UPVC Door And Window.jpeg",
     tag: "High Demand",
     description:
       "Premium precision-engineered UPVC and Aluminium window & door systems offering exceptional soundproofing, thermal insulation, and dust resistance for modern homes and commercial complexes.",
@@ -43,7 +41,7 @@ export const servicesData = [
   },
   {
     id: "false-ceiling",
-    title: "Gypsum & Armstrong False Ceiling Work",
+    title: "Gypsum False Ceiling Work",
     subtitle: "Acoustic & Decorative Ceiling Systems",
     image: imgi_3,
     tag: "Interior Excellence",
@@ -116,6 +114,66 @@ export const servicesData = [
       "Old Sheet Demolition & Retrofitting Work",
     ],
   },
+  {
+    id: "invisible-grill",
+    title: "Invisible Safety Grill System",
+    subtitle: "Modern Balcony & Window Safety Solutions",
+    image: "/image/INVISIBLE GRILL.jpeg",
+    tag: "Modern Safety",
+    description:
+      "High-tensile SS 316 marine grade invisible safety grills engineered for high-rise balconies, windows, and staircases. Provides uncompromised safety for children and pets while offering an unobstructed panoramic view without cluttering architectural aesthetics.",
+    features: [
+      "316 Marine Grade SS Wire with Nylon Coating",
+      "High Tensile Strength (Breaks at >400kg Load)",
+      "Rust-Proof, Corrosion-Resistant & Zero Maintenance",
+      "Emergency Cut-Through Access for Fire Safety",
+    ],
+  },
+  {
+    id: "aluminium-sliding-louver",
+    title: "Aluminium Sliding with Louver Fixed",
+    subtitle: "Architectural Ventilation & Shading Systems",
+    image: "/image/ALUMINIUM SLIDING WITH LOUVER FIXED.jpeg",
+    tag: "Premium Design",
+    description:
+      "Custom powder-coated heavy-duty aluminium sliding windows integrated with fixed louver panels for optimal privacy, weather control, and continuous natural airflow. Ideal for modern residential, commercial, and utility enclosures.",
+    features: [
+      "Heavy Duty Powder-Coated Aluminium Track & Frame",
+      "Fixed Louvers for Privacy & Rainwater Protection",
+      "Smooth Nylon Roller Bearings for Silent Operation",
+      "Custom Anodized / Powder Coated Color Options",
+    ],
+  },
+  {
+    id: "sliding-mosquito-net",
+    title: "Sliding Mosquito Net Window System",
+    subtitle: "Heavy Duty Pest Control & Ventilation Mesh",
+    image: "/image/SLIDING MOSQUITO NET.jpeg",
+    tag: "Insect Protection",
+    description:
+      "Custom engineered sliding mosquito net frames crafted with high-grade stainless steel / fiberglass mesh and powder-coated aluminium tracks. Ensures 100% insect protection while allowing unrestricted fresh airflow and natural daylight.",
+    features: [
+      "SS 304 High-Durability / Fiberglass Mesh Options",
+      "Smooth Track Aluminium Sliding Profile Frame",
+      "Rust-Free & Easily Removable for Washing",
+      "Seamless Fit for Windows, Doors & Balconies",
+    ],
+  },
+  {
+    id: "honeycomb-fixing",
+    title: "Aluminum Honeycomb Structural Cladding",
+    subtitle: "Modern Architectural Wall & Ceiling Panels",
+    image: "/image/HONEYCOMB FIXING.jpeg",
+    tag: "Architectural Cladding",
+    description:
+      "High-strength lightweight aluminum honeycomb panel fixing for building facades, exterior cladding, and premium ceiling partitions. Provides outstanding flatness, thermal insulation, sound dampening, and high wind resistance.",
+    features: [
+      "Ultra-Lightweight & Exceptional Structural Rigidity",
+      "PVDF / Anodized Weather-Resistant Coating",
+      "Fire-Proof Class A Composite Core Material",
+      "Superior Sound & Thermal Insulation Performance",
+    ],
+  },
 ];
 
 export default function Services({ onSelectService, onOpenQuote }) {
@@ -156,7 +214,7 @@ export default function Services({ onSelectService, onOpenQuote }) {
           </span>
           
           <h2 className="font-cinzel text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight uppercase">
-            Our Specialist <span className="text-red-600">Services & Fabrication</span>
+            Our <span className="text-red-600">Services</span>
           </h2>
           
           <p className="font-lora text-slate-600 text-base sm:text-lg leading-relaxed">
@@ -177,6 +235,7 @@ export default function Services({ onSelectService, onOpenQuote }) {
                   src={service.image}
                   alt={service.title}
                   loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                 />
 
@@ -275,6 +334,8 @@ export default function Services({ onSelectService, onOpenQuote }) {
                 <img
                   src={selectedService.image}
                   alt={selectedService.title}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />

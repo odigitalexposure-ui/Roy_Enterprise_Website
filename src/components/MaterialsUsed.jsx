@@ -1,4 +1,4 @@
-import { ShieldCheck, Award, Layers, Sparkles, CheckCircle2, FileText, ArrowRight } from "lucide-react";
+import { ShieldCheck, Award, ArrowRight } from "lucide-react";
 
 import material1 from "../assets/material1.webp";
 import material2 from "../assets/material2.jpg";
@@ -162,6 +162,7 @@ export default function MaterialsUsed({ onOpenQuote }) {
                   src={material.image}
                   alt={material.title}
                   loading="lazy"
+                  decoding="async"
                   className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-500"
                 />
                 

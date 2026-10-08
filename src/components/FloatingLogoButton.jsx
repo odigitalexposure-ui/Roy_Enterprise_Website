@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Phone, MessageSquare, ShieldCheck, X, ChevronUp } from "lucide-react";
+import { Phone, MessageSquare, ShieldCheck, X } from "lucide-react";
 
 export default function FloatingLogoButton({ onOpenQuote }) {
   const [isOpen, setIsOpen] = useState(false);

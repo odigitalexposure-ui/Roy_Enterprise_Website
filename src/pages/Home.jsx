@@ -1,18 +1,27 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import StatsCounter from "../components/StatsCounter";
-import WhatWeDo from "../components/WhatWeDo";
-import Services from "../components/Services";
-import Gallery from "../components/Gallery";
-import MaterialsUsed from "../components/MaterialsUsed";
-import HowItWorks from "../components/HowItWorks";
-import WorkGallery from "../components/WorkGallery";
-import Testimonials from "../components/Testimonials";
-import Contact from "../components/Contact";
-import QuoteModal from "../components/QuoteModal";
-import FloatingLogoButton from "../components/FloatingLogoButton";
 import { ArrowUp } from "lucide-react";
+
+// Lazy-loaded below-the-fold components for optimal initial page load performance & Lighthouse scores
+const WhatWeDo = lazy(() => import("../components/WhatWeDo"));
+const Services = lazy(() => import("../components/Services"));
+const Gallery = lazy(() => import("../components/Gallery"));
+const MaterialsUsed = lazy(() => import("../components/MaterialsUsed"));
+const HowItWorks = lazy(() => import("../components/HowItWorks"));
+const WorkGallery = lazy(() => import("../components/WorkGallery"));
+const Testimonials = lazy(() => import("../components/Testimonials"));
+const Contact = lazy(() => import("../components/Contact"));
+const QuoteModal = lazy(() => import("../components/QuoteModal"));
+const FloatingLogoButton = lazy(() => import("../components/FloatingLogoButton"));
+
+// Lightweight skeleton loader fallback for smooth chunk loading
+const SectionFallback = () => (
+  <div className="w-full py-16 flex items-center justify-center bg-slate-50">
+    <div className="w-8 h-8 rounded-full border-2 border-red-600 border-t-transparent animate-spin" />
+  </div>
+);
 
 const Home = () => {
   const [isQuoteOpen, setIsQuoteOpen] = useState(false);
@@ -52,22 +61,29 @@ const Home = () => {
         {/* Statistics Counter Cards Section (Placed right after Hero section as requested) */}
         <StatsCounter />
 
-        <WhatWeDo onOpenQuote={handleOpenQuote} />
-        <Services onOpenQuote={handleOpenQuote} />
-        <Gallery onOpenQuote={handleOpenQuote} />
-        <MaterialsUsed onOpenQuote={handleOpenQuote} />
-        <HowItWorks onOpenQuote={handleOpenQuote} />
-        <WorkGallery onOpenQuote={handleOpenQuote} />
-        <Testimonials />
-        <Contact prefilledService={prefilledService} />
+        <Suspense fallback={<SectionFallback />}>
+          <WhatWeDo onOpenQuote={handleOpenQuote} />
+          <Services onOpenQuote={handleOpenQuote} />
+          <Gallery onOpenQuote={handleOpenQuote} />
+          <MaterialsUsed onOpenQuote={handleOpenQuote} />
+          <HowItWorks onOpenQuote={handleOpenQuote} />
+          <WorkGallery onOpenQuote={handleOpenQuote} />
+          <Testimonials />
+          <Contact prefilledService={prefilledService} />
+        </Suspense>
       </main>
 
-      {/* Quote Request Modal */}
-      <QuoteModal
-        isOpen={isQuoteOpen}
-        onClose={handleCloseQuote}
-        prefilledService={prefilledService}
-      />
+      <Suspense fallback={null}>
+        {/* Quote Request Modal */}
+        <QuoteModal
+          isOpen={isQuoteOpen}
+          onClose={handleCloseQuote}
+          prefilledService={prefilledService}
+        />
+
+        {/* Global Round Floating Button with Original Roy Enterprise Logo */}
+        <FloatingLogoButton onOpenQuote={handleOpenQuote} />
+      </Suspense>
 
       {/* Scroll To Top Button (Left side of floating logo button) */}
       {showScrollTop && (
@@ -79,9 +95,6 @@ const Home = () => {
           <ArrowUp className="w-5 h-5" />
         </button>
       )}
-
-      {/* Global Round Floating Button with Original Roy Enterprise Logo */}
-      <FloatingLogoButton onOpenQuote={handleOpenQuote} />
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { MapPin, Phone, Mail, Clock, Send, ExternalLink, CheckCircle2, ShieldCheck, MessageSquare } from "lucide-react";
+import { MapPin, Phone, Mail, Send, ExternalLink } from "lucide-react";
 
 const MAP_EMBED_URL =
   "https://www.google.com/maps?q=127%20Rabindranath%20Tagore%20Road%2C%20Purbachal%2C%20Nabapally%2C%20Kolkata%2C%20West%20Bengal%20700063&output=embed";
