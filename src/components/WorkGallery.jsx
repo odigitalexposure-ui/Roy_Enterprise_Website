@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { X, ChevronLeft, ChevronRight, Maximize2, Sparkles, ArrowRight } from "lucide-react";
 
-export const workGalleryItems = [
+const workGalleryItems = [
   { image: "/image/image1.jpeg", title: "Industrial Roof Shed Erection", category: "Roof Sheds", location: "Barasat, Kolkata" },
   { image: "/image/image2.jpeg", title: "Curved Terrace Galvalume Shed", category: "Roof Sheds", location: "Kestopur, Kolkata" },
   { image: "/image/image3.jpeg", title: "Heavy GI Pipe Structural Framework", category: "Steel Framing", location: "Salt Lake, Kolkata" },
@@ -29,6 +29,11 @@ export const workGalleryItems = [
   { image: "/image/POLYCARBON MALTIWALL SHEET.jpeg", title: "Polycarbonate Multiwall Thermal Roofing Sheet", category: "Roof Sheds", location: "Kasba, Kolkata" },
   { image: "/image/SLIDING MOSQUITO NET.jpeg", title: "Heavy Duty Sliding Mosquito Net Window System", category: "Staircase & Glazing", location: "Ballygunge, Kolkata" },
   { image: "/image/UPVC Door And Window.jpeg", title: "Precision Engineered UPVC Door & Window System", category: "Staircase & Glazing", location: "New Town Action Area 1, Kolkata" },
+  { image: "/image/Transparent Crystal Folding Sliding Door.jpeg", title: "Transparent Crystal Folding Sliding Door", category: "Staircase & Glazing", location: "South City, Kolkata" },
+  { image: "/image/Fluted Glass Partition.jpeg", title: "Fluted Glass Architectural Partition", category: "Staircase & Glazing", location: "Sector V, Salt Lake, Kolkata" },
+  { image: "/image/12mm Toughened Glass with Pargola Design.jpeg", title: "12mm Toughened Glass with Pergola Design", category: "Staircase & Glazing", location: "New Town, Kolkata" },
+  { image: "/image/SS Glass Railing.jpeg", title: "SS 304 Toughened Glass Railing System", category: "Staircase & Glazing", location: "Ballygunge Circular Rd, Kolkata" },
+  { image: "/image/Gypsum False Ceiling.jpeg", title: "Designer Gypsum False Ceiling & Cove Lighting", category: "Staircase & Glazing", location: "Lake Gardens, Kolkata" },
 ];
 
 const categories = ["All Projects", "Roof Sheds", "Steel Framing", "Warehouses", "Staircase & Glazing"];
@@ -55,10 +60,11 @@ export default function WorkGallery({ onOpenQuote }) {
   useEffect(() => {
     if (selectedIndex === null) return;
 
+    const total = filteredItems.length;
     const handleKey = (e) => {
-      if (e.key === "Escape") closeLightbox();
-      if (e.key === "ArrowLeft") showPrevious();
-      if (e.key === "ArrowRight") showNext();
+      if (e.key === "Escape") setSelectedIndex(null);
+      if (e.key === "ArrowLeft") setSelectedIndex((curr) => (curr === 0 ? total - 1 : curr - 1));
+      if (e.key === "ArrowRight") setSelectedIndex((curr) => (curr === total - 1 ? 0 : curr + 1));
     };
 
     window.addEventListener("keydown", handleKey);
@@ -68,7 +74,7 @@ export default function WorkGallery({ onOpenQuote }) {
       window.removeEventListener("keydown", handleKey);
       document.body.style.overflow = "";
     };
-  }, [selectedIndex, filteredItems]);
+  }, [selectedIndex, filteredItems.length]);
 
   return (
     <section id="gallery" className="py-20 bg-slate-900 text-white relative overflow-hidden">

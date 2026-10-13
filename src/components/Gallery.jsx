@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { X, ChevronLeft, ChevronRight, Maximize2, ArrowRight, Sparkles } from "lucide-react";
 
-export const primaryGalleryItems = [
+const primaryGalleryItems = [
   {
     title: "All Types Of Roof Sheds",
     subtitle: "Tata Galvalume Curved & Slope Sheds",
@@ -63,10 +63,11 @@ export default function Gallery({ onOpenQuote }) {
   useEffect(() => {
     if (selectedIndex === null) return;
 
+    const total = primaryGalleryItems.length;
     const handleKeyboard = (event) => {
-      if (event.key === "Escape") closeModal();
-      if (event.key === "ArrowLeft") showPrevious();
-      if (event.key === "ArrowRight") showNext();
+      if (event.key === "Escape") setSelectedIndex(null);
+      if (event.key === "ArrowLeft") setSelectedIndex((curr) => (curr === 0 ? total - 1 : curr - 1));
+      if (event.key === "ArrowRight") setSelectedIndex((curr) => (curr === total - 1 ? 0 : curr + 1));
     };
 
     window.addEventListener("keydown", handleKeyboard);

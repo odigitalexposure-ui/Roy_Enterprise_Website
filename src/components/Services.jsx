@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Wrench, ArrowRight, ShieldCheck, Check, Maximize2, X } from "lucide-react";
+import { Wrench, ArrowRight, ShieldCheck, Check, Maximize2, X, ChevronDown, ChevronUp, Loader2 } from "lucide-react";
 
 import image_0 from "../assets/image_0.jpeg";
 import imgi_3 from "../assets/imgi_3.jpg";
@@ -8,7 +8,7 @@ import imgi_5 from "../assets/imgi_5.jpg";
 import imgi_6 from "../assets/imgi_6.jpg";
 import imgi_7 from "../assets/imgi_7.jpg";
 
-export const servicesData = [
+const servicesData = [
   {
     id: "roof-shed",
     title: "Roof Shed with Wpc Border Fixing",
@@ -174,10 +174,109 @@ export const servicesData = [
       "Superior Sound & Thermal Insulation Performance",
     ],
   },
+  {
+    id: "transparent-crystal-folding-sliding-door",
+    title: "Transparent Crystal Folding Sliding Door",
+    subtitle: "Luxury Frameless & Bifold Architectural Partitions",
+    image: "/image/Transparent Crystal Folding Sliding Door.jpeg",
+    tag: "Luxury Architectural",
+    description:
+      "Premium transparent crystal folding and sliding door systems engineered for luxury residences, commercial showrooms, and upscale office partitions. Features ultra-clear heavy-duty polycarbonate or crystal-tempered panels that fold effortlessly to provide an unobstructed 95% wide-open expanse.",
+    features: [
+      "High-Clarity Impact-Resistant Crystal Panels",
+      "Heavy-Duty Top-Hung Aluminium Track & Rollers",
+      "Space-Saving Accordion Bifold Mechanism",
+      "Weather-Sealed Dust-Proof Gaskets & Multi-Point Locks",
+    ],
+  },
+  {
+    id: "fluted-glass-partition",
+    title: "Fluted Glass Partition",
+    subtitle: "Modern Reeded Glass Interior & Office Partitions",
+    image: "/image/Fluted Glass Partition.jpeg",
+    tag: "Trending Interior",
+    description:
+      "Sophisticated fluted (reeded/ribbed) textured glass partition systems framed with slim black powder-coated aluminium or stainless steel profiles. Delivers optical privacy while allowing diffused natural daylight to illuminate interior cabins, bathrooms, and living spaces.",
+    features: [
+      "8mm to 10mm Toughened Reeded / Fluted Safety Glass",
+      "Slim-Profile Matte Black & Metallic Aluminium Framing",
+      "Superior Acoustic Dampening & Daylight Diffusion",
+      "Custom Floor-to-Ceiling Heights & Sliding/Hinged Options",
+    ],
+  },
+  {
+    id: "toughened-glass-pargola-design",
+    title: "12mm Toughened Glass with Pargola Design",
+    subtitle: "Outdoor Terrace, Balcony & Garden Pergola Canopies",
+    image: "/image/12mm Toughened Glass with Pargola Design.jpeg",
+    tag: "Exterior Luxury",
+    description:
+      "Architectural outdoor pergolas integrated with 12mm heavy toughened safety glass or laminated glass roofing supported by heavy GI/MS steel or aluminium rafter beams. Engineered to create elegant, rainproof, and UV-protected outdoor sitting areas, rooftop terraces, and garden patios.",
+    features: [
+      "12mm Heat-Strengthened High-Impact Toughened Safety Glass",
+      "Heavy-Gauge Structural Steel / Aluminium Pergola Framing",
+      "UV-Protective Solar Tinting & Anti-Shatter Interlayer",
+      "100% Waterproof Structural Silicone & Gasket Sealing",
+    ],
+  },
+  {
+    id: "ss-glass-railing",
+    title: "SS Glass Railing",
+    subtitle: "Stainless Steel & Toughened Glass Balustrades",
+    image: "/image/SS Glass Railing.jpeg",
+    tag: "Safety & Elegance",
+    description:
+      "High-grade SS 304 / SS 316 stainless steel glass railing systems with 10mm to 12mm toughened safety glass for balconies, staircases, terraces, and commercial atriums. Offers maximum fall protection and structural stability with contemporary minimalist aesthetics.",
+    features: [
+      "Grade SS 304 / Marine SS 316 Stainless Steel Posts & Spigots",
+      "10mm - 12mm Heavy Toughened / Laminated Safety Glass",
+      "Sleek Continuous Top Handrail or Base-Shoe Channel Design",
+      "Rust-Proof, Weather-Resistant & Heavy-Load Certified",
+    ],
+  },
+  {
+    id: "gypsum-false-ceiling",
+    title: "Gypsum False Ceiling",
+    subtitle: "Designer Cove Lighting & Modular False Ceilings",
+    image: "/image/Gypsum False Ceiling.jpeg",
+    tag: "Modern Interior",
+    description:
+      "Custom-crafted designer gypsum board false ceilings featuring multi-tiered layouts, concealed LED cove lighting troughs, and recessed profile lighting channels. Enhances interior luxury, optimizes room acoustics, conceals electrical cabling, and provides superior thermal insulation.",
+    features: [
+      "Original Saint-Gobain Gyproc Fire & Moisture Resistant Boards",
+      "Galvanized Steel Framing Channels (Perimeter & Intermediate)",
+      "Custom Multi-Level Architectural Designs & Ambient Cove Lighting",
+      "Flawless Joint Finishing with Crack-Resistant Jointing",
+    ],
+  },
 ];
 
 export default function Services({ onSelectService, onOpenQuote }) {
+  const INITIAL_COUNT = 6;
+  const LOAD_INCREMENT = 6;
+
+  const [visibleCount, setVisibleCount] = useState(INITIAL_COUNT);
   const [selectedService, setSelectedService] = useState(null);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+
+  const displayedServices = servicesData.slice(0, visibleCount);
+  const hasMore = visibleCount < servicesData.length;
+
+  const handleLoadMore = () => {
+    setIsLoadingMore(true);
+    setTimeout(() => {
+      setVisibleCount((prev) => Math.min(prev + LOAD_INCREMENT, servicesData.length));
+      setIsLoadingMore(false);
+    }, 200);
+  };
+
+  const handleShowLess = () => {
+    setVisibleCount(INITIAL_COUNT);
+    const servicesSection = document.getElementById("services");
+    if (servicesSection) {
+      servicesSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   useEffect(() => {
     if (!selectedService) return;
@@ -222,14 +321,14 @@ export default function Services({ onSelectService, onOpenQuote }) {
           </p>
         </div>
 
-        {/* Services Grid */}
+        {/* Services Grid (Initially 6 boxes rendered for optimal performance and lazy loading) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {servicesData.map((service) => (
+          {displayedServices.map((service) => (
             <div
               key={service.id}
-              className="group bg-white rounded-2xl border border-slate-200/80 shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col overflow-hidden hover:-translate-y-1.5"
+              className="group bg-white rounded-2xl border border-slate-200/80 shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col overflow-hidden hover:-translate-y-1.5 animate-in fade-in duration-300"
             >
-              {/* Card Image - Full Unobstructed View */}
+              {/* Card Image - Full Unobstructed View with Lazy Loading */}
               <div className="relative h-56 sm:h-60 overflow-hidden bg-slate-100">
                 <img
                   src={service.image}
@@ -304,6 +403,62 @@ export default function Services({ onSelectService, onOpenQuote }) {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Load More Button & Expansion Controls */}
+        <div className="mt-14 flex flex-col items-center justify-center text-center space-y-4">
+          {hasMore ? (
+            <button
+              type="button"
+              onClick={handleLoadMore}
+              disabled={isLoadingMore}
+              className="group inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-red-600 via-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-extrabold text-sm uppercase tracking-wider shadow-xl shadow-red-600/25 hover:shadow-red-600/40 hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer border border-red-500/50"
+            >
+              {isLoadingMore ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  <span>Loading Services...</span>
+                </>
+              ) : (
+                <>
+                  <span>Load More Services</span>
+                  <span className="px-2.5 py-0.5 rounded-full bg-white/20 text-xs font-black tracking-normal">
+                    +{Math.min(LOAD_INCREMENT, servicesData.length - visibleCount)} More
+                  </span>
+                  <ChevronDown className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
+                </>
+              )}
+            </button>
+          ) : (
+            <div className="flex flex-col sm:flex-row items-center gap-3">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold border border-emerald-200 shadow-xs">
+                <Check className="w-4 h-4 text-emerald-600" />
+                <span>All {servicesData.length} Master Services Loaded</span>
+              </div>
+              <button
+                type="button"
+                onClick={handleShowLess}
+                className="inline-flex items-center gap-1.5 px-5 py-2 rounded-full bg-white border border-slate-300 text-slate-700 text-xs font-bold hover:bg-slate-100 transition-colors shadow-xs cursor-pointer"
+              >
+                <span>Show First 6 Services</span>
+                <ChevronUp className="w-4 h-4 text-slate-500" />
+              </button>
+            </div>
+          )}
+
+          {/* Service Counter & Progress Indicator */}
+          <div className="space-y-1.5 max-w-xs w-full">
+            <div className="flex justify-between items-center text-[11px] font-bold text-slate-500">
+              <span>Displaying {displayedServices.length} of {servicesData.length} Services</span>
+              <span>{Math.round((displayedServices.length / servicesData.length) * 100)}%</span>
+            </div>
+            <div className="h-1.5 w-full bg-slate-200 rounded-full overflow-hidden">
+              <div
+                className="h-full bg-gradient-to-r from-red-500 to-red-600 rounded-full transition-all duration-500"
+                style={{ width: `${(displayedServices.length / servicesData.length) * 100}%` }}
+              />
+            </div>
+          </div>
         </div>
       </div>
 

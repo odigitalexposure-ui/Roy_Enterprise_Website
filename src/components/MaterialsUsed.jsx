@@ -9,7 +9,7 @@ import material6 from "../assets/imgi_37_imgi_66_asian-galvalume-sheet.webp";
 import material7 from "../assets/imgi_40_imageye___-_imgi_127_Q235-Zinc-Coating-Hollow-Section-Pre-Galvanised-Steel-Hollow-Section-Gi-Pipe-75mm-75-mm-Gi-Square-Pipe.webp";
 import material8 from "../assets/imgi_43_imgi_57_polycarbonate-sheet.jpg";
 
-export const materialsData = [
+const materialsData = [
   {
     title: "Tata 0.47mm Galvalume Roofing Sheets",
     brand: "Tata Steel",

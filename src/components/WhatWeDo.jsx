@@ -14,7 +14,7 @@ export default function WhatWeDo({ onOpenQuote }) {
   ];
 
   return (
-    <section id="services" className="py-20 bg-white relative overflow-hidden">
+    <section id="what-we-do" className="py-20 bg-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header with Luxury Serif & Script Typography */}

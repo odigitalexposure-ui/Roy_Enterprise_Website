@@ -136,12 +136,43 @@ _Submitted via Roy Enterprise Website_`;
                       className="w-full px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white text-sm focus:outline-none focus:border-red-500 transition-colors"
                     >
                       <option value="All Types Of Roof Sheds">All Types Of Roof Sheds</option>
-                      <option value="UPVC & Aluminium Glazing">UPVC & Aluminium Glazing</option>
+                      <option value="Roof Shed with Wpc Border Fixing">Roof Shed with Wpc Border Fixing</option>
+                      <option value="UPVC Doors & Windows">UPVC Doors & Windows</option>
+                      <option value="Gypsum False Ceiling Work">Gypsum False Ceiling Work</option>
+                      <option value="Toughened Glass with Glass Film Fixing">Toughened Glass with Glass Film Fixing</option>
+                      <option value="Complete Warehouse Construction">Complete Warehouse Construction</option>
+                      <option value="Heavy Steel Structure Engineering">Heavy Steel Structure Engineering</option>
+                      <option value="Erection & Tin Sheeting Services">Erection & Tin Sheeting Services</option>
+                      <option value="Invisible Safety Grill System">Invisible Safety Grill System</option>
+                      <option value="Aluminium Sliding with Louver Fixed">Aluminium Sliding with Louver Fixed</option>
+                      <option value="Sliding Mosquito Net Window System">Sliding Mosquito Net Window System</option>
+                      <option value="Aluminum Honeycomb Structural Cladding">Aluminum Honeycomb Structural Cladding</option>
+                      <option value="Transparent Crystal Folding Sliding Door">Transparent Crystal Folding Sliding Door</option>
+                      <option value="Fluted Glass Partition">Fluted Glass Partition</option>
+                      <option value="12mm Toughened Glass with Pargola Design">12mm Toughened Glass with Pargola Design</option>
+                      <option value="SS Glass Railing">SS Glass Railing</option>
                       <option value="Gypsum False Ceiling">Gypsum False Ceiling</option>
-                      <option value="Toughened Glass Canopy">Toughened Glass Canopy</option>
-                      <option value="Industrial Warehouse Shed">Industrial Warehouse Shed</option>
-                      <option value="Heavy Steel Structure">Heavy Steel Structure</option>
-                      <option value="Tin Sheeting & Erection">Tin Sheeting & Erection</option>
+                      {formData.service && ![
+                        "All Types Of Roof Sheds",
+                        "Roof Shed with Wpc Border Fixing",
+                        "UPVC Doors & Windows",
+                        "Gypsum False Ceiling Work",
+                        "Toughened Glass with Glass Film Fixing",
+                        "Complete Warehouse Construction",
+                        "Heavy Steel Structure Engineering",
+                        "Erection & Tin Sheeting Services",
+                        "Invisible Safety Grill System",
+                        "Aluminium Sliding with Louver Fixed",
+                        "Sliding Mosquito Net Window System",
+                        "Aluminum Honeycomb Structural Cladding",
+                        "Transparent Crystal Folding Sliding Door",
+                        "Fluted Glass Partition",
+                        "12mm Toughened Glass with Pargola Design",
+                        "SS Glass Railing",
+                        "Gypsum False Ceiling"
+                      ].includes(formData.service) && (
+                        <option value={formData.service}>{formData.service}</option>
+                      )}
                     </select>
                   </div>
 
