@@ -152,6 +152,11 @@ _Submitted via Roy Enterprise Website_`;
                       <option value="12mm Toughened Glass with Pargola Design">12mm Toughened Glass with Pargola Design</option>
                       <option value="SS Glass Railing">SS Glass Railing</option>
                       <option value="Gypsum False Ceiling">Gypsum False Ceiling</option>
+                      <option value="GI Shutter">GI Shutter</option>
+                      <option value="GI Gate">GI Gate</option>
+                      <option value="Polycarbon Transparent Sheet">Polycarbon Transparent Sheet</option>
+                      <option value="Polycarbon Multi-Wall Sheet">Polycarbon Multi-Wall Sheet</option>
+                      <option value="POLYCARBON CORRUGATED SHEET">POLYCARBON CORRUGATED SHEET</option>
                       {formData.service && ![
                         "All Types Of Roof Sheds",
                         "Roof Shed with Wpc Border Fixing",
@@ -169,7 +174,12 @@ _Submitted via Roy Enterprise Website_`;
                         "Fluted Glass Partition",
                         "12mm Toughened Glass with Pargola Design",
                         "SS Glass Railing",
-                        "Gypsum False Ceiling"
+                        "Gypsum False Ceiling",
+                        "GI Shutter",
+                        "GI Gate",
+                        "Polycarbon Transparent Sheet",
+                        "Polycarbon Multi-Wall Sheet",
+                        "POLYCARBON CORRUGATED SHEET"
                       ].includes(formData.service) && (
                         <option value={formData.service}>{formData.service}</option>
                       )}

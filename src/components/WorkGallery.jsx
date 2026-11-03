@@ -34,6 +34,11 @@ const workGalleryItems = [
   { image: "/image/12mm Toughened Glass with Pargola Design.jpeg", title: "12mm Toughened Glass with Pergola Design", category: "Staircase & Glazing", location: "New Town, Kolkata" },
   { image: "/image/SS Glass Railing.jpeg", title: "SS 304 Toughened Glass Railing System", category: "Staircase & Glazing", location: "Ballygunge Circular Rd, Kolkata" },
   { image: "/image/Gypsum False Ceiling.jpeg", title: "Designer Gypsum False Ceiling & Cove Lighting", category: "Staircase & Glazing", location: "Lake Gardens, Kolkata" },
+  { image: "/image/GI Shutter.jpeg", title: "Heavy GI Rolling Shutter Installation", category: "Steel Framing", location: "Dankuni Industrial Area" },
+  { image: "/image/GI Gate.jpeg", title: "Custom Heavy-Gauge GI Entrance Gate", category: "Steel Framing", location: "Barasat, Kolkata" },
+  { image: "/image/Polycarbon Transparent Sheet.jpeg", title: "Clear Solid Polycarbonate Daylight Canopy", category: "Roof Sheds", location: "Salt Lake Sector V, Kolkata" },
+  { image: "/image/Polycarbon Multi-Wall Sheet.jpeg", title: "Twin-Wall Polycarbonate Terrace Skylight", category: "Roof Sheds", location: "New Town Action Area, Kolkata" },
+  { image: "/image/POLYCARBON CORRUGATED SHEET.jpeg", title: "Profile-Matched Corrugated Polycarbonate Roofing", category: "Roof Sheds", location: "Howrah Industrial Belt" },
 ];
 
 const categories = ["All Projects", "Roof Sheds", "Steel Framing", "Warehouses", "Staircase & Glazing"];

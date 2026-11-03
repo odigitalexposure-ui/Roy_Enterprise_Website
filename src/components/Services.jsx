@@ -13,6 +13,7 @@ const servicesData = [
     id: "roof-shed",
     title: "Roof Shed with Wpc Border Fixing",
     subtitle: "Industrial, Commercial & Residential Sheds",
+    category: "Roofing & Polycarbonate",
     image: image_0,
     tag: "Most Popular",
     description:
@@ -28,6 +29,7 @@ const servicesData = [
     id: "upvc-doors-windows",
     title: "UPVC Doors & Windows",
     subtitle: "Modern Architectural Glazing & Sliding Systems",
+    category: "Doors & Windows",
     image: "/image/UPVC Door And Window.jpeg",
     tag: "High Demand",
     description:
@@ -43,6 +45,7 @@ const servicesData = [
     id: "false-ceiling",
     title: "Gypsum False Ceiling Work",
     subtitle: "Acoustic & Decorative Ceiling Systems",
+    category: "Ceilings & Cladding",
     image: imgi_3,
     tag: "Interior Excellence",
     description:
@@ -58,6 +61,7 @@ const servicesData = [
     id: "toughened-glass",
     title: "Toughened Glass with Glass Film Fixing",
     subtitle: "Architectural Glass Facades, Canopies & Film Fixing",
+    category: "Glass & Glazing",
     image: imgi_4,
     tag: "Premium Safety",
     description:
@@ -70,9 +74,90 @@ const servicesData = [
     ],
   },
   {
+    id: "gi-shutter",
+    title: "GI Shutter",
+    subtitle: "Heavy-Duty Galvanized Iron Rolling Shutters",
+    category: "Gates & Shutters",
+    image: "/image/GI Shutter.jpeg",
+    tag: "Commercial Security",
+    description:
+      "Industrial and commercial grade motorized and manual GI rolling shutter systems fabricated with hot-dip galvanized steel slats. Engineered for high wind resistance, anti-theft security, smooth rolling operation, and corrosion resistance for shop fronts, godowns, garages, and factory bays.",
+    features: [
+      "Heavy-Gauge Hot-Dip Galvanized Iron (GI) Slats",
+      "Manual Pull-Push, Gear Operated & Motorized Automation",
+      "High-Tension Spring & Deep Channel Wind-Lock Guides",
+      "Weather-Sealed Bottom Rail with High-Security Padlock Brackets",
+    ],
+  },
+  {
+    id: "gi-gate",
+    title: "GI Gate",
+    subtitle: "Heavy-Gauge Galvanized Iron Main Entrance Gates",
+    category: "Gates & Shutters",
+    image: "/image/GI Gate.jpeg",
+    tag: "Heavy Security",
+    description:
+      "Custom architectural and industrial heavy-duty GI entrance gates built from premium galvanized iron hollow sections and structural pipe. Designed for factory boundaries, residential complexes, and commercial gates with anti-sag hinge mechanics, anti-rust zinc primer, and sliding or swing operation.",
+    features: [
+      "Tata & Jindal High-Yield GI Tubular & Box Sections",
+      "Custom Laser-Cut Decorative & High-Security Grill Patterns",
+      "Heavy-Duty Ball Bearing Hinges & Industrial Ground Tracks",
+      "Rust-Proof Epoxy Zinc Primer with Weather-Resistant PU Coat",
+    ],
+  },
+  {
+    id: "polycarbon-transparent-sheet",
+    title: "Polycarbon Transparent Sheet",
+    subtitle: "Crystal-Clear Solid Daylight Polycarbonate Roofing",
+    category: "Roofing & Polycarbonate",
+    image: "/image/Polycarbon Transparent Sheet.jpeg",
+    tag: "90% Daylight Pass",
+    description:
+      "Ultra-clear solid transparent polycarbonate sheets providing up to 90% natural light transmission with 250x higher impact resistance than regular float glass. Features dual-sided co-extruded UV protection to prevent yellowing while transmitting bright, natural sunlight into terrace canopies, skylights, and patio roofs.",
+    features: [
+      "Up to 90% High Optical Light Transmission with Zero Distortion",
+      "250x Impact Resistance of Glass – Virtually Unbreakable",
+      "Co-Extruded Dual-Sided UV Barrier Layer Prevents Yellowing",
+      "Extreme Weather Resistance (-40°C to +120°C) with Thermal Stability",
+    ],
+  },
+  {
+    id: "polycarbon-multi-wall-sheet",
+    title: "Polycarbon Multi-Wall Sheet",
+    subtitle: "Thermal Insulated Twin-Wall & Multi-Chamber Polycarbonate",
+    category: "Roofing & Polycarbonate",
+    image: "/image/Polycarbon Multi-Wall Sheet.jpeg",
+    tag: "Thermal Efficiency",
+    description:
+      "Engineered multi-wall and twin-wall polycarbonate sheets designed with internal hollow air flutes that deliver remarkable thermal insulation, solar heat reduction, and diffused glare-free illumination. Lightweight, easy to cold-curve on site, and leak-proof with specialized aluminum joining profiles.",
+    features: [
+      "Multi-Chamber Air Cavity for Superior Heat & Sound Insulation",
+      "Lightweight Structural Rigidity with High Cold-Forming Flexibility",
+      "Glare-Free Diffused Natural Lighting for Factory & Greenhouses",
+      "Water-Tight Aluminum Joinery & Anti-Dust Breather Tape Sealing",
+    ],
+  },
+  {
+    id: "polycarbon-corrugated-sheet",
+    title: "POLYCARBON CORRUGATED SHEET",
+    subtitle: "Profile-Matched High-Strength Daylight Corrugated Roofing",
+    category: "Roofing & Polycarbonate",
+    image: "/image/POLYCARBON CORRUGATED SHEET.jpeg",
+    tag: "Industrial Roofing",
+    description:
+      "Industrial corrugated polycarbonate daylight sheets engineered to match standard metal and Galvalume trapezoidal roofing profiles. Provides seamless integration into industrial warehouse sheds, factories, and workshops, allowing ample natural daylighting without altering existing purlin spacings.",
+    features: [
+      "Precision Profile-Matched with Industrial Metal & Galvalume Sheets",
+      "High Hailstone Impact & Heavy Wind Load Certified",
+      "UV-Protected Surface Prevents Brittle Fractures & Discoloration",
+      "Class 1 Fire-Retardant Self-Extinguishing Safety Standard",
+    ],
+  },
+  {
     id: "complete-warehouse",
     title: "Complete Warehouse Construction",
     subtitle: "Turnkey Industrial Infrastructure",
+    category: "Ceilings & Cladding",
     image: imgi_5,
     tag: "Turnkey Solutions",
     description:
@@ -88,6 +173,7 @@ const servicesData = [
     id: "heavy-steel-structures",
     title: "Heavy Steel Structure Engineering",
     subtitle: "Industrial Trusses, Girders & Framing",
+    category: "Ceilings & Cladding",
     image: imgi_6,
     tag: "Heavy Duty",
     description:
@@ -103,6 +189,7 @@ const servicesData = [
     id: "tin-sheeting",
     title: "Erection & Tin Sheeting Services",
     subtitle: "Roofing Sheet Replacement & Wall Cladding",
+    category: "Roofing & Polycarbonate",
     image: imgi_7,
     tag: "Fast Turnaround",
     description:
@@ -118,6 +205,7 @@ const servicesData = [
     id: "invisible-grill",
     title: "Invisible Safety Grill System",
     subtitle: "Modern Balcony & Window Safety Solutions",
+    category: "Gates & Shutters",
     image: "/image/INVISIBLE GRILL.jpeg",
     tag: "Modern Safety",
     description:
@@ -133,6 +221,7 @@ const servicesData = [
     id: "aluminium-sliding-louver",
     title: "Aluminium Sliding with Louver Fixed",
     subtitle: "Architectural Ventilation & Shading Systems",
+    category: "Doors & Windows",
     image: "/image/ALUMINIUM SLIDING WITH LOUVER FIXED.jpeg",
     tag: "Premium Design",
     description:
@@ -148,6 +237,7 @@ const servicesData = [
     id: "sliding-mosquito-net",
     title: "Sliding Mosquito Net Window System",
     subtitle: "Heavy Duty Pest Control & Ventilation Mesh",
+    category: "Doors & Windows",
     image: "/image/SLIDING MOSQUITO NET.jpeg",
     tag: "Insect Protection",
     description:
@@ -163,6 +253,7 @@ const servicesData = [
     id: "honeycomb-fixing",
     title: "Aluminum Honeycomb Structural Cladding",
     subtitle: "Modern Architectural Wall & Ceiling Panels",
+    category: "Ceilings & Cladding",
     image: "/image/HONEYCOMB FIXING.jpeg",
     tag: "Architectural Cladding",
     description:
@@ -178,6 +269,7 @@ const servicesData = [
     id: "transparent-crystal-folding-sliding-door",
     title: "Transparent Crystal Folding Sliding Door",
     subtitle: "Luxury Frameless & Bifold Architectural Partitions",
+    category: "Doors & Windows",
     image: "/image/Transparent Crystal Folding Sliding Door.jpeg",
     tag: "Luxury Architectural",
     description:
@@ -193,6 +285,7 @@ const servicesData = [
     id: "fluted-glass-partition",
     title: "Fluted Glass Partition",
     subtitle: "Modern Reeded Glass Interior & Office Partitions",
+    category: "Glass & Glazing",
     image: "/image/Fluted Glass Partition.jpeg",
     tag: "Trending Interior",
     description:
@@ -208,6 +301,7 @@ const servicesData = [
     id: "toughened-glass-pargola-design",
     title: "12mm Toughened Glass with Pargola Design",
     subtitle: "Outdoor Terrace, Balcony & Garden Pergola Canopies",
+    category: "Glass & Glazing",
     image: "/image/12mm Toughened Glass with Pargola Design.jpeg",
     tag: "Exterior Luxury",
     description:
@@ -223,6 +317,7 @@ const servicesData = [
     id: "ss-glass-railing",
     title: "SS Glass Railing",
     subtitle: "Stainless Steel & Toughened Glass Balustrades",
+    category: "Glass & Glazing",
     image: "/image/SS Glass Railing.jpeg",
     tag: "Safety & Elegance",
     description:
@@ -238,6 +333,7 @@ const servicesData = [
     id: "gypsum-false-ceiling",
     title: "Gypsum False Ceiling",
     subtitle: "Designer Cove Lighting & Modular False Ceilings",
+    category: "Ceilings & Cladding",
     image: "/image/Gypsum False Ceiling.jpeg",
     tag: "Modern Interior",
     description:
@@ -251,21 +347,45 @@ const servicesData = [
   },
 ];
 
+const CATEGORIES = [
+  "All Services",
+  "Roofing & Polycarbonate",
+  "Gates & Shutters",
+  "Glass & Glazing",
+  "Doors & Windows",
+  "Ceilings & Cladding",
+];
+
 export default function Services({ onSelectService, onOpenQuote }) {
   const INITIAL_COUNT = 6;
   const LOAD_INCREMENT = 6;
 
+  const [activeCategory, setActiveCategory] = useState("All Services");
   const [visibleCount, setVisibleCount] = useState(INITIAL_COUNT);
   const [selectedService, setSelectedService] = useState(null);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
 
-  const displayedServices = servicesData.slice(0, visibleCount);
-  const hasMore = visibleCount < servicesData.length;
+  // Filter based on active category
+  const filteredServices = activeCategory === "All Services"
+    ? servicesData
+    : servicesData.filter((item) => item.category === activeCategory);
+
+  // When filtering a specific category, show all matching cards directly; on "All", paginate
+  const displayedServices = activeCategory === "All Services"
+    ? filteredServices.slice(0, visibleCount)
+    : filteredServices;
+
+  const hasMore = activeCategory === "All Services" && visibleCount < filteredServices.length;
+
+  const handleCategoryChange = (category) => {
+    setActiveCategory(category);
+    setVisibleCount(INITIAL_COUNT);
+  };
 
   const handleLoadMore = () => {
     setIsLoadingMore(true);
     setTimeout(() => {
-      setVisibleCount((prev) => Math.min(prev + LOAD_INCREMENT, servicesData.length));
+      setVisibleCount((prev) => Math.min(prev + LOAD_INCREMENT, filteredServices.length));
       setIsLoadingMore(false);
     }, 200);
   };
@@ -302,7 +422,7 @@ export default function Services({ onSelectService, onOpenQuote }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <div className="text-center max-w-3xl mx-auto mb-10 space-y-3">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-100 border border-red-200 text-red-700 text-xs font-extrabold uppercase tracking-wider">
             <Wrench className="w-3.5 h-3.5" />
             <span>Comprehensive Solutions</span>
@@ -317,11 +437,43 @@ export default function Services({ onSelectService, onOpenQuote }) {
           </h2>
           
           <p className="font-lora text-slate-600 text-base sm:text-lg leading-relaxed">
-            From heavy industrial warehouse steel framing to elegant residential roof sheds and UPVC glazing, we deliver turnkey craftsmanship built to last for decades.
+            From heavy industrial warehouse steel framing, GI rolling shutters, and entrance gates to transparent polycarbonate roofing and UPVC glazing, we deliver turnkey craftsmanship built to last for decades.
           </p>
         </div>
 
-        {/* Services Grid (Initially 6 boxes rendered for optimal performance and lazy loading) */}
+        {/* Category Filter Pills */}
+        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 mb-12">
+          {CATEGORIES.map((cat) => {
+            const count = cat === "All Services"
+              ? servicesData.length
+              : servicesData.filter((s) => s.category === cat).length;
+            const isActive = activeCategory === cat;
+
+            return (
+              <button
+                key={cat}
+                type="button"
+                onClick={() => handleCategoryChange(cat)}
+                className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold transition-all duration-300 cursor-pointer ${
+                  isActive
+                    ? "bg-red-600 text-white shadow-lg shadow-red-600/30 scale-105"
+                    : "bg-white text-slate-700 hover:text-red-600 hover:bg-slate-100 border border-slate-200/80 shadow-xs"
+                }`}
+              >
+                <span>{cat}</span>
+                <span
+                  className={`px-1.5 py-0.5 rounded-full text-[10px] font-black ${
+                    isActive ? "bg-white/20 text-white" : "bg-slate-100 text-slate-500"
+                  }`}
+                >
+                  {count}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {displayedServices.map((service) => (
             <div
@@ -335,6 +487,10 @@ export default function Services({ onSelectService, onOpenQuote }) {
                   alt={service.title}
                   loading="lazy"
                   decoding="async"
+                  onError={(e) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = image_0;
+                  }}
                   className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                 />
 
@@ -405,61 +561,74 @@ export default function Services({ onSelectService, onOpenQuote }) {
           ))}
         </div>
 
-        {/* Load More Button & Expansion Controls */}
-        <div className="mt-14 flex flex-col items-center justify-center text-center space-y-4">
-          {hasMore ? (
-            <button
-              type="button"
-              onClick={handleLoadMore}
-              disabled={isLoadingMore}
-              className="group inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-red-600 via-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-extrabold text-sm uppercase tracking-wider shadow-xl shadow-red-600/25 hover:shadow-red-600/40 hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer border border-red-500/50"
-            >
-              {isLoadingMore ? (
-                <>
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                  <span>Loading Services...</span>
-                </>
-              ) : (
-                <>
-                  <span>Load More Services</span>
-                  <span className="px-2.5 py-0.5 rounded-full bg-white/20 text-xs font-black tracking-normal">
-                    +{Math.min(LOAD_INCREMENT, servicesData.length - visibleCount)} More
-                  </span>
-                  <ChevronDown className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
-                </>
-              )}
-            </button>
-          ) : (
-            <div className="flex flex-col sm:flex-row items-center gap-3">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold border border-emerald-200 shadow-xs">
-                <Check className="w-4 h-4 text-emerald-600" />
-                <span>All {servicesData.length} Master Services Loaded</span>
-              </div>
+        {/* Load More Button & Expansion Controls (when viewing All Services) */}
+        {activeCategory === "All Services" ? (
+          <div className="mt-14 flex flex-col items-center justify-center text-center space-y-4">
+            {hasMore ? (
               <button
                 type="button"
-                onClick={handleShowLess}
-                className="inline-flex items-center gap-1.5 px-5 py-2 rounded-full bg-white border border-slate-300 text-slate-700 text-xs font-bold hover:bg-slate-100 transition-colors shadow-xs cursor-pointer"
+                onClick={handleLoadMore}
+                disabled={isLoadingMore}
+                className="group inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-red-600 via-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-extrabold text-sm uppercase tracking-wider shadow-xl shadow-red-600/25 hover:shadow-red-600/40 hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer border border-red-500/50"
               >
-                <span>Show First 6 Services</span>
-                <ChevronUp className="w-4 h-4 text-slate-500" />
+                {isLoadingMore ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <span>Loading Services...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>Load More Services</span>
+                    <span className="px-2.5 py-0.5 rounded-full bg-white/20 text-xs font-black tracking-normal">
+                      +{Math.min(LOAD_INCREMENT, filteredServices.length - visibleCount)} More
+                    </span>
+                    <ChevronDown className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
+                  </>
+                )}
               </button>
-            </div>
-          )}
+            ) : (
+              <div className="flex flex-col sm:flex-row items-center gap-3">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold border border-emerald-200 shadow-xs">
+                  <Check className="w-4 h-4 text-emerald-600" />
+                  <span>All {filteredServices.length} Master Services Loaded</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={handleShowLess}
+                  className="inline-flex items-center gap-1.5 px-5 py-2 rounded-full bg-white border border-slate-300 text-slate-700 text-xs font-bold hover:bg-slate-100 transition-colors shadow-xs cursor-pointer"
+                >
+                  <span>Show First 6 Services</span>
+                  <ChevronUp className="w-4 h-4 text-slate-500" />
+                </button>
+              </div>
+            )}
 
-          {/* Service Counter & Progress Indicator */}
-          <div className="space-y-1.5 max-w-xs w-full">
-            <div className="flex justify-between items-center text-[11px] font-bold text-slate-500">
-              <span>Displaying {displayedServices.length} of {servicesData.length} Services</span>
-              <span>{Math.round((displayedServices.length / servicesData.length) * 100)}%</span>
-            </div>
-            <div className="h-1.5 w-full bg-slate-200 rounded-full overflow-hidden">
-              <div
-                className="h-full bg-gradient-to-r from-red-500 to-red-600 rounded-full transition-all duration-500"
-                style={{ width: `${(displayedServices.length / servicesData.length) * 100}%` }}
-              />
+            {/* Service Counter & Progress Indicator */}
+            <div className="space-y-1.5 max-w-xs w-full">
+              <div className="flex justify-between items-center text-[11px] font-bold text-slate-500">
+                <span>Displaying {displayedServices.length} of {filteredServices.length} Services</span>
+                <span>{Math.round((displayedServices.length / filteredServices.length) * 100)}%</span>
+              </div>
+              <div className="h-1.5 w-full bg-slate-200 rounded-full overflow-hidden">
+                <div
+                  className="h-full bg-gradient-to-r from-red-500 to-red-600 rounded-full transition-all duration-500"
+                  style={{ width: `${(displayedServices.length / filteredServices.length) * 100}%` }}
+                />
+              </div>
             </div>
           </div>
-        </div>
+        ) : (
+          <div className="mt-12 flex justify-center">
+            <button
+              type="button"
+              onClick={() => handleCategoryChange("All Services")}
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-white border border-slate-300 hover:border-slate-400 text-slate-700 hover:text-red-600 text-xs font-bold transition-colors shadow-xs cursor-pointer"
+            >
+              <span>View All 21 Services</span>
+              <ArrowRight className="w-3.5 h-3.5 text-red-600" />
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Service Detail Modal */}
@@ -491,6 +660,10 @@ export default function Services({ onSelectService, onOpenQuote }) {
                   alt={selectedService.title}
                   loading="lazy"
                   decoding="async"
+                  onError={(e) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = image_0;
+                  }}
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
